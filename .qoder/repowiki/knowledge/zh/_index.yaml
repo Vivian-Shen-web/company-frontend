@@ -1,0 +1,33 @@
+# 知识卡导出索引文件
+schema_version: 1
+locale: zh-CN
+branch: Q0DeR-MaG1C-BrAnCh-Fo2-NoN-GiT-Or-No-C0MmIt
+nodes_managed: true
+exported_at: "2026-10-22T06:54:39Z"
+modules:
+    "":
+        dir_name: 前端工程脚手架与构建配置
+        title: 前端工程脚手架与构建配置
+        scope:
+            - README.md
+            - .gitignore
+            - .eslintrc.cjs
+            - .prettierrc.json
+            - package.json
+            - vite.config.ts
+            - vitest.config.ts
+            - tsconfig*.json
+            - env.d.ts
+            - tailwind.config.js
+            - index.html
+            - scripts/
+            - develop/
+            - package-lock.json
+            - tsconfig.app.json
+            - tsconfig.json
+            - tsconfig.node.json
+            - tsconfig.vitest.json
+        source_files: []
+        children: []
+        depends_on: []
+        related_to: []

@@ -1,0 +1,14 @@
+{
+    "tenant":{
+        "management":"Tenant Management",
+        "create":"Create Tenant",
+        
+        "required":{
+            "name":"Tenant name is required!",
+            "domain":"Tenant domain is required!"
+        },
+        "name":"Name",
+        "domain":"Domain",
+        "description":"Description"
+    }
+}

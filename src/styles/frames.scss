@@ -1,0 +1,15 @@
+a:focus,
+a:active,
+button,
+div,
+svg,
+span {
+  outline: none;
+}
+
+.search-form{
+  .search-btn-container{
+    @apply ml-auto;
+    @apply me-0;
+  }
+}

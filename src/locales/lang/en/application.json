@@ -1,0 +1,15 @@
+{
+    "application":{
+        "management":"Application Management",
+        "create":"Register",
+        
+        "required":{
+            "name":"Application name is required!",
+            "code":"Application code is required!"
+        },
+        "name":"Name",
+        "code":"Code",
+        "description":"Description",
+        "scope":"Scope"
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "worktime": {
+        "page": {
+            "title_worktimerange":"WorkTimeRange Setting",
+            "title_workday":"WorkCalendar Setting"
+        },
+        "placeholder": {
+            "search": "Please input firms name"
+        },
+        "validation": {
+            "name_required": "Please input firms name!"
+        },
+        "properties": {
+            "name": "Firms Name",
+            "domain": "Domain"
+        }
+    }
+}

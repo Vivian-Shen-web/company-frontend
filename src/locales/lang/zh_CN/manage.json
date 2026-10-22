@@ -1,0 +1,22 @@
+{
+    "manage": {
+        "page": {
+            "title": "评估历史列表",
+            "operation": {
+                "view": "查看"
+            },
+            "properties": {
+                "index": "序号",
+                "patientName": "患者姓名",
+                "sex": "性别",
+                "age": "年龄",
+                "dateOfBirth": "出生日期",
+                "caseNo": "病案号",
+                "hisPatId": "患者业务唯一号",
+                "hisVisId": "就诊业务唯一号",
+                "versionNum": "版本号",
+                "createDate": "分析时间"
+            }
+        }
+    }
+}

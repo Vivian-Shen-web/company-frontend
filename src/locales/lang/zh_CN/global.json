@@ -1,0 +1,28 @@
+{
+    "global": {
+        "operation": {
+            "operation": "操作",
+            "create": "创建",
+            "modify": "修改",
+            "import": "导入",
+            "export": "导出",
+            "remove": "删除",
+            "cancel": "取消",
+            "save": "保存",
+            "add": "新增"
+        },
+        "status": {
+            "yes": "是",
+            "no": "否"
+        },
+        "message": {
+            "created": "创建成功",
+            "modified": "修改成功",
+            "removed": "删除成功",
+            "autoGenerate": "自动生成"
+        },
+        "confirm": {
+            "remove": "是否确认删除"
+        }
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "role": {
+        "page": {
+            "title": "Role List",
+            "operation": {
+                "create": "Add",
+                "confirm": "Confirm",
+                "cancel": "Cancel",
+                "assign_personnel": "Assign personnel",
+                "configuration_menu": "Configuration menu"
+            },
+            "properties": {
+                "name": "Role Name",
+                "description": "Description",
+                "code": "Code"
+            }
+        },
+        "validation": {
+            "name_required": "Role name must not be empty!",
+            "name_length_required": "The length of the role name must not be less than 2 or greater than 15!",
+            "description_required": "Role description must not be empty!",
+            "code_required": "Role code must not be empty!"
+        },
+        "placeholder": {
+            "search": "Please input role name",
+            "role_name": "Please input role name",
+            "role_description": "Please input role name",
+            "role_code": "Please input role code"
+        },
+        "error": {
+            "deplicate": "Duplicate role codes exist"
+        }
+    }
+}
