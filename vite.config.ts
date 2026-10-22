@@ -1,36 +1,19 @@
 import { fileURLToPath, URL } from 'node:url'
-import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import Components from 'unplugin-vue-components/vite'
 import Pages from 'vite-plugin-pages'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from 'tailwindcss'
 import autoprefixer from 'autoprefixer'
-import topLevelAwait from 'vite-plugin-top-level-await'
-
-const CWD = process.cwd()
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
-    topLevelAwait({
-      // The export name of top-level await promise for each chunk module
-      promiseExportName: '__tla',
-      // The function to generate import names of top-level await promise in each chunk module
-      promiseImportName: (i) => `__tla_${i}`
-    }),
     Pages({
-      dirs: 'src/views',
-      exclude: ['**/components/*.vue']
-    }),
-    createSvgIconsPlugin({
-      // Specify the icon folder to be cached
-      iconDirs: [resolve(CWD, 'src/assets/icons')],
-      // Specify symbolId format
-      symbolId: 'svg-icon-[dir]-[name]'
+      dirs: 'src/views/index',
+      exclude: ['**/components/*.vue', '**/data/*.ts']
     }),
     Components({
       resolvers: [
@@ -87,13 +70,6 @@ export default defineConfig({
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, '')
       }
-      // "/login": {
-      //   // target: "http://localhost:9527",
-      //   target: "https://itsm.iquicker.com/login/",
-      //   changeOrigin: true,
-      //   secure: false,
-      //   rewrite: (path) => path.replace(/^\/login/, ""),
-      // },
     }
   }
 })

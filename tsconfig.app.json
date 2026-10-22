@@ -1,7 +1,18 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "files": ["./components.d.ts"],
-  "include": ["env.d.ts", "src/**/*", "types/**/*.d.ts", "src/**/*.vue"],
+  "include": [
+    "env.d.ts",
+    "src/App.vue",
+    "src/main.ts",
+    "src/views/index/**/*",
+    "src/components/qsd/**/*",
+    "src/router/**/*",
+    "src/stores/index.ts",
+    "src/stores/modules/qsd.ts",
+    "src/styles/**/*",
+    "src/assets/qsd/**/*",
+    "types/**/*.d.ts"
+  ],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "types": [],
