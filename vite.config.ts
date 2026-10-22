@@ -19,6 +19,35 @@ export default defineConfig({
           route.path = route.path.replace(/^\/index/, '')
         }
         return route
+      },
+      onRoutesGenerated(routes) {
+        const flattenRoutes: any[] = []
+
+        const normalizePath = (path: string) => {
+          const normalizedPath = path.replace(/^\/index(?=\/|$)/, '') || '/'
+          return normalizedPath.replace(/\/+/g, '/')
+        }
+
+        const joinPath = (parentPath: string, childPath: string) => {
+          if (childPath.startsWith('/')) return childPath
+          if (parentPath === '/') return `/${childPath}`
+          return `${parentPath}/${childPath}`
+        }
+
+        const collectRoute = (route: any, parentPath = '') => {
+          const { children, ...routeWithoutChildren } = route
+          const fullPath = normalizePath(parentPath ? joinPath(parentPath, route.path) : route.path)
+
+          flattenRoutes.push({
+            ...routeWithoutChildren,
+            path: fullPath
+          })
+
+          children?.forEach((childRoute: any) => collectRoute(childRoute, fullPath))
+        }
+
+        routes.forEach((route) => collectRoute(route))
+        return flattenRoutes
       }
     }),
     Components({

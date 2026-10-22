@@ -34,7 +34,9 @@ const goDetail = (id: string) => {
         </RouterLink>
         <RouterLink class="nav-link" to="/">Home</RouterLink>
         <a-dropdown placement="bottomLeft" overlay-class-name="qsd-dropdown">
-          <button class="nav-link" type="button">Vehicles <span class="chevron">⌄</span></button>
+          <button class="nav-link" type="button" @click="router.push('/vehicles')">
+            Vehicles <span class="chevron">⌄</span>
+          </button>
           <template #overlay>
             <div class="vehicle-menu">
               <div class="vehicle-menu__side">
@@ -59,7 +61,9 @@ const goDetail = (id: string) => {
           </template>
         </a-dropdown>
         <a-dropdown placement="bottomLeft" overlay-class-name="qsd-small-dropdown">
-          <button class="nav-link" type="button">Dealer &amp; Service <span class="chevron">⌄</span></button>
+          <button class="nav-link" type="button" @click="router.push('/dealer')">
+            Dealer &amp; Service <span class="chevron">⌄</span>
+          </button>
           <template #overlay>
             <div class="small-menu">
               <RouterLink to="/dealer">Dealer Locatar</RouterLink>
@@ -70,7 +74,9 @@ const goDetail = (id: string) => {
         <RouterLink class="nav-link" to="/factory">Become a Dealer</RouterLink>
         <RouterLink class="nav-link" to="/factory">ODM / R&amp;D</RouterLink>
         <RouterLink class="nav-link" to="/contact">Contact</RouterLink>
-        <button class="enquire-button" type="button" @click="qsdStore.openInquiry">Enquie Now <span>→</span></button>
+        <button class="enquire-button" type="button" @click="qsdStore.openInquiry">
+          Enquie Now <span>→</span>
+        </button>
       </div>
     </nav>
   </header>
