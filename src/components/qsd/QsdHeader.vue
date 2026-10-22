@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 
+import { asset, vehicles } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
-import { asset, vehicles } from '@/views/index/data/qsdData'
 
 defineOptions({
   name: 'QsdHeader'

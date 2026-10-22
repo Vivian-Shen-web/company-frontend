@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import { testimonials } from '../data/qsdData'
+import { testimonials } from '@/services/qsd/qsdData'
 
 defineOptions({
   name: 'TestimonialSection'

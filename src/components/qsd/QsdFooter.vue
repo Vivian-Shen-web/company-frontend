@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { asset, footerVehicleGroups } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
-import { asset, footerVehicleGroups } from '@/views/index/data/qsdData'
 
 defineOptions({
   name: 'QsdFooter'

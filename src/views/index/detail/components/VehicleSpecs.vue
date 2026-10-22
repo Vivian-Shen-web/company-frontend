@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { VehicleModel } from '../data/qsdData'
+import type { VehicleModel } from '@/services/qsd/qsdData'
 
 defineOptions({
   name: 'VehicleSpecs'

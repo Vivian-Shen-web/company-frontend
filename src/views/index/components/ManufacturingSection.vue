@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { asset } from '../data/qsdData'
+import { asset } from '@/services/qsd/qsdData'
 
 defineOptions({
   name: 'ManufacturingSection'
@@ -21,7 +21,9 @@ defineOptions({
         <span><strong>4</strong>advanced process facilities</span>
         <span><strong>OEM &amp; custom</strong>solutions</span>
       </div>
-      <RouterLink class="ghost-pill ghost-pill--cyan" to="/factory">Explore manufacturing →</RouterLink>
+      <RouterLink class="ghost-pill ghost-pill--cyan" to="/factory"
+        >Explore manufacturing →</RouterLink
+      >
     </div>
   </section>
 </template>

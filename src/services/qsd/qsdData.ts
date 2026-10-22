@@ -16,13 +16,23 @@ export interface VehicleModel {
   highlights: string[]
 }
 
-const qsdAssets = import.meta.glob('../../../assets/qsd/india_l5/*', {
+const qsdPngAssets = import.meta.glob('../../assets/img/*.png', {
   eager: true,
   query: '?url',
   import: 'default'
 }) as Record<string, string>
 
-export const asset = (name: string) => qsdAssets[`../../../assets/qsd/india_l5/${name}`] || ''
+const qsdSvgAssets = import.meta.glob('../../assets/icons/*.svg', {
+  eager: true,
+  query: '?url',
+  import: 'default'
+}) as Record<string, string>
+
+export const asset = (name: string) => {
+  if (name.endsWith('.png')) return qsdPngAssets[`../../assets/img/${name}`] || ''
+  if (name.endsWith('.svg')) return qsdSvgAssets[`../../assets/icons/${name}`] || ''
+  return ''
+}
 
 export const vehicles: VehicleModel[] = [
   {

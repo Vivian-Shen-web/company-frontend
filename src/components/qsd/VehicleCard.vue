@@ -2,7 +2,7 @@
 import { useRouter } from 'vue-router'
 
 import { useQsdStore } from '@/stores/modules/qsd'
-import type { VehicleModel } from '../data/qsdData'
+import type { VehicleModel } from '@/services/qsd/qsdData'
 
 defineOptions({
   name: 'VehicleCard'

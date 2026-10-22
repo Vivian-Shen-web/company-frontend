@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineOptions({
-  name: 'SubHero'
+  name: 'QsdSubHero'
 })
 
 defineProps<{

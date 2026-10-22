@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
-import { type VehicleCategory, vehicles } from '@/views/index/data/qsdData'
+import { type VehicleCategory, vehicles } from '@/services/qsd/qsdData'
 
 export const useQsdStore = defineStore('qsd', () => {
   const currentCategory = ref<VehicleCategory>('3W Passenger')

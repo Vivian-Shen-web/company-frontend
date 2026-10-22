@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useQsdStore } from '@/stores/modules/qsd'
-import { asset } from '../data/qsdData'
+import { asset } from '@/services/qsd/qsdData'
 
 defineOptions({
   name: 'HeroSection'

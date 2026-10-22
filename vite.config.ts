@@ -12,8 +12,14 @@ export default defineConfig({
   plugins: [
     vue(),
     Pages({
-      dirs: 'src/views/index',
-      exclude: ['**/components/*.vue', '**/data/*.ts']
+      dirs: 'src/views',
+      exclude: ['**/components/*.vue', '**/403.vue', '**/[...all].vue', '**/[[]...all[]].vue'],
+      extendRoute(route) {
+        if (route.path.startsWith('/index/')) {
+          route.path = route.path.replace(/^\/index/, '')
+        }
+        return route
+      }
     }),
     Components({
       resolvers: [

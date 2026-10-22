@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
 
+import VehicleCard from '@/components/qsd/VehicleCard.vue'
+import { categories } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
-import { categories } from '../data/qsdData'
-import VehicleCard from './VehicleCard.vue'
 
 defineOptions({
   name: 'VehicleShowcase'
