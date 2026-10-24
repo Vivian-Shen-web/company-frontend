@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-
-import VehicleCard from '@/components/qsd/VehicleCard.vue'
-import { categories } from '@/services/qsd/qsdData'
+import { vehicles } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
 
 defineOptions({
@@ -10,7 +7,8 @@ defineOptions({
 })
 
 const qsdStore = useQsdStore()
-const { currentCategory, filteredVehicles } = storeToRefs(qsdStore)
+
+const featuredVehicles = vehicles.slice(0, 3)
 </script>
 
 <template>
@@ -19,11 +17,33 @@ const { currentCategory, filteredVehicles } = storeToRefs(qsdStore)
       <p class="eyebrow">THE LINEUP</p>
       <h2>Electric autos for every route</h2>
     </div>
-    <a-tabs v-model:active-key="currentCategory" class="qsd-tabs">
-      <a-tab-pane v-for="category in categories" :key="category" :tab="category" />
-    </a-tabs>
     <div class="vehicle-grid">
-      <VehicleCard v-for="vehicle in filteredVehicles" :key="vehicle.id" :vehicle="vehicle" />
+      <article v-for="vehicle in featuredVehicles" :key="vehicle.id" class="vehicle-card">
+        <img :src="vehicle.image" :alt="vehicle.name" />
+        <h3>{{ vehicle.name }}</h3>
+        <p>{{ vehicle.description }}</p>
+        <div class="metrics">
+          <span
+            ><strong>{{ vehicle.speed }}</strong
+            >Top speed</span
+          >
+          <span
+            ><strong>{{ vehicle.range }}</strong
+            >Range</span
+          >
+          <span
+            ><strong>{{ vehicle.seats }}</strong
+            >Seats</span
+          >
+        </div>
+        <RouterLink
+          class="card-link"
+          :to="`/detail/${vehicle.id}`"
+          @click="qsdStore.setActiveVehicle(vehicle.id)"
+        >
+          View details →
+        </RouterLink>
+      </article>
     </div>
   </section>
 </template>
