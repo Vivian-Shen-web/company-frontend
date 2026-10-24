@@ -75,11 +75,14 @@ const goDetail = (id: string) => {
             </div>
           </template>
         </a-dropdown>
-        <RouterLink class="nav-link" to="/factory">Become a Dealer</RouterLink>
+        <button class="nav-link" type="button" @click="qsdStore.openInquiry">
+          Become a Dealer
+        </button>
         <RouterLink class="nav-link" to="/factory">ODM / R&amp;D</RouterLink>
         <RouterLink class="nav-link" to="/contact">Contact</RouterLink>
         <button class="enquire-button" type="button" @click="qsdStore.openInquiry">
-          Enquie Now <ArrowRightOutlined />
+          Enquie Now
+          <ArrowRightOutlined />
         </button>
       </div>
     </nav>
