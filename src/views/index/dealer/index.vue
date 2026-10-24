@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import QsdLayout from '@/components/qsd/QsdLayout.vue'
-import LocatorPage from './components/LocatorPage.vue'
+import QsdLocatorPage from '@/components/qsd/QsdLocatorPage.vue'
 
 defineOptions({
   name: 'QsdDealerPage'
@@ -9,6 +9,6 @@ defineOptions({
 
 <template>
   <QsdLayout>
-    <LocatorPage title="Dealer locator" current="Dealer locator" />
+    <QsdLocatorPage current="Dealer locator" hero-image="u1018.png" map-image="u1022.png" />
   </QsdLayout>
 </template>
