@@ -17,8 +17,8 @@ defineOptions({
     <HeroSection />
     <StatsStrip />
     <VehicleShowcase />
-    <ManufacturingSection />
     <TestimonialSection />
+    <ManufacturingSection />
     <CtaSection />
   </QsdLayout>
 </template>

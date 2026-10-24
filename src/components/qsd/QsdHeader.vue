@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ArrowRightOutlined, DownloadOutlined, PhoneOutlined } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
 
 import { asset, vehicles } from '@/services/qsd/qsdData'
@@ -21,8 +22,11 @@ const goDetail = (id: string) => {
   <header>
     <div class="top-contact">
       <div class="page-shell top-contact__inner">
-        <button class="brochure-select" type="button">Download Brochure</button>
-        <span class="phone-icon">●</span>
+        <button class="brochure-select" type="button">
+          Download Brochure
+          <DownloadOutlined />
+        </button>
+        <PhoneOutlined class="phone-icon" />
         <span class="phone-number">18600875245</span>
       </div>
     </div>
@@ -75,7 +79,7 @@ const goDetail = (id: string) => {
         <RouterLink class="nav-link" to="/factory">ODM / R&amp;D</RouterLink>
         <RouterLink class="nav-link" to="/contact">Contact</RouterLink>
         <button class="enquire-button" type="button" @click="qsdStore.openInquiry">
-          Enquie Now <span>→</span>
+          Enquie Now <ArrowRightOutlined />
         </button>
       </div>
     </nav>

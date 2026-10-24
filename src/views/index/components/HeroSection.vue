@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
+import { Autoplay, EffectFade, Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 
 import { useQsdStore } from '@/stores/modules/qsd'
@@ -7,7 +7,7 @@ import { asset } from '@/services/qsd/qsdData'
 
 import 'swiper/css'
 import 'swiper/css/effect-fade'
-import 'swiper/css/pagination'
+import 'swiper/css/navigation'
 
 defineOptions({
   name: 'HeroSection'
@@ -39,7 +39,7 @@ const heroSlides = [
   }
 ]
 
-const swiperModules = [Autoplay, EffectFade, Pagination]
+const swiperModules = [Autoplay, EffectFade, Navigation]
 </script>
 
 <template>
@@ -51,7 +51,7 @@ const swiperModules = [Autoplay, EffectFade, Pagination]
       :loop="true"
       :speed="500"
       :autoplay="{ delay: 3000, disableOnInteraction: false }"
-      :pagination="{ clickable: true }"
+      :navigation="true"
     >
       <SwiperSlide v-for="slide in heroSlides" :key="slide.image" :class="slide.className">
         <img class="hero-bg" :src="slide.image" alt="" />

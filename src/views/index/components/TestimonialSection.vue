@@ -1,34 +1,43 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { Navigation, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/vue'
 
-import { testimonials } from '@/services/qsd/qsdData'
+import { asset, testimonials } from '@/services/qsd/qsdData'
+
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
 defineOptions({
   name: 'TestimonialSection'
 })
 
-const testimonialIndex = ref(0)
+const testimonialAvatars = [asset('u308.png'), asset('u312.png'), asset('u319.png')]
+const swiperModules = [Navigation, Pagination]
 </script>
 
 <template>
-  <section class="testimonial-section page-shell">
-    <div class="section-heading">
-      <p class="eyebrow">CUSTOMER VOICE</p>
+  <section class="testimonial-section">
+    <div class="page-shell">
       <h2>What our customers say</h2>
-    </div>
-    <article class="testimonial-card">
-      <p>"{{ testimonials[testimonialIndex].quote }}"</p>
-      <strong>{{ testimonials[testimonialIndex].name }}</strong>
-      <span>{{ testimonials[testimonialIndex].market }}</span>
-    </article>
-    <div class="dots">
-      <button
-        v-for="(_, index) in testimonials"
-        :key="index"
-        type="button"
-        :class="{ active: index === testimonialIndex }"
-        @click="testimonialIndex = index"
-      />
+      <Swiper
+        class="testimonial-swiper"
+        :modules="swiperModules"
+        :loop="true"
+        :initial-slide="2"
+        :speed="500"
+        :navigation="true"
+        :pagination="{ clickable: true }"
+      >
+        <SwiperSlide v-for="(testimonial, index) in testimonials" :key="testimonial.name">
+          <article class="testimonial-card">
+            <p>"{{ testimonial.quote }}"</p>
+            <img :src="testimonialAvatars[index]" :alt="testimonial.name" />
+            <strong>{{ testimonial.name }}</strong>
+            <span>{{ testimonial.market }}</span>
+          </article>
+        </SwiperSlide>
+      </Swiper>
     </div>
   </section>
 </template>

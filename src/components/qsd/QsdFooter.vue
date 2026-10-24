@@ -1,27 +1,24 @@
 <script setup lang="ts">
+import {
+  FacebookFilled,
+  InstagramOutlined,
+  MailOutlined,
+  WhatsAppOutlined,
+  YoutubeFilled
+} from '@ant-design/icons-vue'
+
 import { asset, footerVehicleGroups } from '@/services/qsd/qsdData'
-import { useQsdStore } from '@/stores/modules/qsd'
 
 defineOptions({
   name: 'QsdFooter'
 })
-
-const qsdStore = useQsdStore()
 </script>
 
 <template>
   <footer class="site-footer">
     <div class="page-shell footer-inner">
-      <div>
+      <div class="footer-brand">
         <img :src="asset('u1342.png')" alt="QSD" />
-        <p>© 2026 QSD. All rights reserved.</p>
-      </div>
-      <div>
-        <h3>QUICK LINKS</h3>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/vehicles">Vehicles</RouterLink>
-        <RouterLink to="/dealer">Dealer &amp; Service</RouterLink>
-        <RouterLink to="/contact">Contact</RouterLink>
       </div>
       <div class="footer-products">
         <h3>Vehicles</h3>
@@ -30,12 +27,26 @@ const qsdStore = useQsdStore()
           <span v-for="item in group.slice(1)" :key="item">{{ item }}</span>
         </div>
       </div>
-      <div>
-        <h3>CONTACT</h3>
-        <span>info@qsd.com</span>
-        <span>Whats App</span>
+      <div class="footer-links">
+        <h3>QUICK LINKS</h3>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/vehicles">Vehicles</RouterLink>
+        <RouterLink to="/dealer">Dealer &amp; Service</RouterLink>
+        <RouterLink to="/factory">Become a Dealer</RouterLink>
         <RouterLink to="/factory">ODM / R&amp;D</RouterLink>
-        <button type="button" @click="qsdStore.openInquiry">Become a Dealer</button>
+        <RouterLink to="/contact">Contact</RouterLink>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 QSD. All rights reserved.</span>
+        <div class="footer-social">
+          <FacebookFilled />
+          <InstagramOutlined />
+          <YoutubeFilled />
+        </div>
+        <div class="footer-contact">
+          <span><MailOutlined /> info@qsd.com</span>
+          <span><WhatsAppOutlined /> Whats App</span>
+        </div>
       </div>
     </div>
   </footer>
