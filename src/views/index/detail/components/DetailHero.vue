@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { DownloadOutlined } from '@ant-design/icons-vue'
 
+import QsdBreadcrumb from '@/components/qsd/QsdBreadcrumb.vue'
 import { asset } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
 import type { VehicleModel } from '@/services/qsd/qsdData'
@@ -17,10 +18,7 @@ const qsdStore = useQsdStore()
 </script>
 
 <template>
-  <div class="detail-breadcrumb page-shell">
-    <RouterLink to="/">Home</RouterLink>
-    <span>＞ Vehicles</span>
-  </div>
+  <QsdBreadcrumb current="Vehicles" />
   <section class="detail-hero" :style="{ backgroundImage: `url(${asset('u13.png')})` }">
     <div class="page-shell detail-layout">
       <div class="detail-copy-panel">

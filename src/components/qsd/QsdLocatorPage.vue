@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import QsdBreadcrumb from '@/components/qsd/QsdBreadcrumb.vue'
 import { asset } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
 
@@ -18,12 +19,7 @@ const qsdStore = useQsdStore()
 
 <template>
   <section class="qsd-locator">
-    <div class="qsd-locator__breadcrumb">
-      <div class="page-shell">
-        <RouterLink to="/">Home</RouterLink>
-        <span>＞ {{ current }}</span>
-      </div>
-    </div>
+    <QsdBreadcrumb :current="current" />
     <img class="qsd-locator__hero" :src="asset(heroImage)" :alt="current" />
     <div class="qsd-locator__search">
       <a-input placeholder="Search">

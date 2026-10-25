@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import QsdBreadcrumb from '@/components/qsd/QsdBreadcrumb.vue'
 import { asset } from '@/services/qsd/qsdData'
 
 defineOptions({
@@ -7,10 +8,7 @@ defineOptions({
 </script>
 
 <template>
-  <div class="contact-breadcrumb page-shell">
-    <RouterLink to="/">Home</RouterLink>
-    <span>＞ Contact</span>
-  </div>
+  <QsdBreadcrumb current="Contact" />
   <section class="contact-hero" :style="{ backgroundImage: `url(${asset('u880.png')})` }">
     <div class="page-shell">
       <p class="eyebrow">CONTACT US</p>

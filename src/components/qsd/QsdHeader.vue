@@ -7,7 +7,7 @@ import {
 } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
 
-import { asset, vehicles } from '@/services/qsd/qsdData'
+import { asset } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
 
 defineOptions({
@@ -20,6 +20,26 @@ const qsdStore = useQsdStore()
 const goDetail = (id: string) => {
   qsdStore.setActiveVehicle(id)
   router.push(`/detail/${id}`)
+}
+
+const vehicleMenuCategories = ['3W Passenger', '3W Cargo', '4W Passenger', '4W Cargo']
+const vehicleMenuItems = [
+  { label: 'SUN 1+3', image: 'u1370.png', size: 'sun', id: 'sun-13' },
+  { label: 'TESLATESLA', image: 'u81.png', size: 'tesla', id: 'tesla-d46' },
+  { label: 'JOY SPORT 1+8', image: 'u82.png', size: 'joy', id: 'joy-18' },
+  { label: 'MASTER', image: 'u1379.png', size: 'master', id: null },
+  { label: 'SUN 1+3', image: 'u1370.png', size: 'sun', id: 'sun-13' },
+  { label: 'TESLATESLA', image: 'u81.png', size: 'tesla', id: 'tesla-d46' },
+  { label: 'JOY SPORT 1+8', image: 'u82.png', size: 'joy', id: 'joy-18' },
+  { label: 'MASTER', image: 'u1379.png', size: 'master', id: null }
+]
+
+const goMenuVehicle = (id: string | null) => {
+  if (id) {
+    goDetail(id)
+  } else {
+    router.push('/vehicles')
+  }
 }
 </script>
 
@@ -49,21 +69,28 @@ const goDetail = (id: string) => {
           <template #overlay>
             <div class="vehicle-menu">
               <div class="vehicle-menu__side">
-                <strong>3W Passenger</strong>
-                <strong>3W Cargo</strong>
-                <strong>4W Passenger</strong>
-                <strong>4W Cargo</strong>
+                <button
+                  v-for="(category, index) in vehicleMenuCategories"
+                  :key="category"
+                  type="button"
+                  class="vehicle-menu__side-item"
+                  :class="{ 'is-active': index === 0 }"
+                >
+                  <span>{{ category }}</span>
+                  <img :src="asset(index === 0 ? 'u1366.svg' : 'u1367.svg')" alt="" />
+                </button>
               </div>
               <div class="vehicle-menu__grid">
                 <button
-                  v-for="vehicle in vehicles"
-                  :key="vehicle.id"
+                  v-for="(item, index) in vehicleMenuItems"
+                  :key="`${item.label}-${index}`"
                   type="button"
                   class="vehicle-menu__item"
-                  @click="goDetail(vehicle.id)"
+                  :class="`vehicle-menu__item--${item.size}`"
+                  @click="goMenuVehicle(item.id)"
                 >
-                  <img :src="vehicle.image" :alt="vehicle.name" />
-                  <span>{{ vehicle.name }}</span>
+                  <img :src="asset(item.image)" :alt="item.label" />
+                  <span>{{ item.label }}</span>
                 </button>
               </div>
             </div>

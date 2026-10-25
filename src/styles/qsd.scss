@@ -142,37 +142,126 @@
   overflow: hidden;
   border-radius: 6px;
   background: #fff;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.043);
 }
 
-.vehicle-menu__side {
+.vehicle-menu .vehicle-menu__side {
   display: flex;
-  width: 240px;
+  width: 239px;
+  flex: none;
   flex-direction: column;
-  gap: 34px;
   background: #f2f2f2;
-  padding: 34px 24px;
+}
+
+.vehicle-menu .vehicle-menu__side-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 66px;
+  padding: 0 20px 0 25px;
+  border: 0;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  color: #333;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21px;
+  text-align: left;
+}
+
+.vehicle-menu .vehicle-menu__side-item:first-child {
+  background: #fff;
+  color: #135b6b;
+}
+
+.vehicle-menu .vehicle-menu__side-item img {
+  width: 7px;
+  height: 12px;
+}
+
+.vehicle-menu .vehicle-menu__side-item:not(:first-child) img {
+  transform: rotate(180deg);
 }
 
 .vehicle-menu__grid {
   display: grid;
   flex: 1;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  padding: 36px;
+  grid-template-rows: repeat(3, 148px);
 }
 
-.vehicle-menu__item {
-  display: grid;
-  gap: 12px;
-  place-items: center;
+.vehicle-menu .vehicle-menu__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0;
+  background: transparent;
+  color: #333;
   font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: center;
 }
 
 .vehicle-menu__item img {
-  width: 120px;
-  height: 96px;
   object-fit: contain;
+}
+
+.vehicle-menu__item span {
+  margin-top: 4px;
+}
+
+.vehicle-menu__item--sun {
+  padding-top: 39px;
+}
+
+.vehicle-menu__item--sun span {
+  margin-top: 5px;
+}
+
+.vehicle-menu__item--tesla {
+  padding-top: 31px;
+}
+
+.vehicle-menu__item--tesla span {
+  margin-top: 0;
+}
+
+.vehicle-menu__item--joy {
+  padding-top: 37px;
+}
+
+.vehicle-menu__item--joy span {
+  margin-top: 2px;
+}
+
+.vehicle-menu__item--master {
+  padding-top: 36px;
+}
+
+.vehicle-menu__item--master span {
+  margin-top: 5px;
+}
+
+.vehicle-menu__item--sun img {
+  width: 98px;
+  height: 86px;
+}
+
+.vehicle-menu__item--tesla img {
+  width: 96px;
+  height: 99px;
+}
+
+.vehicle-menu__item--joy img {
+  width: 115px;
+  height: 91px;
+}
+
+.vehicle-menu__item--master img {
+  width: 109px;
+  height: 89px;
 }
 
 .small-menu {
@@ -968,14 +1057,14 @@
   justify-content: space-between;
 }
 
-.detail-breadcrumb {
+.qsd-breadcrumb {
   height: 45px;
   color: #333;
   font-size: 12px;
   line-height: 45px;
 }
 
-.detail-breadcrumb a {
+.qsd-breadcrumb a {
   color: #135b6b;
 }
 
@@ -1435,17 +1524,6 @@
   font-size: 18px;
 }
 
-.contact-breadcrumb {
-  height: 45px;
-  color: #333;
-  font-size: 12px;
-  line-height: 45px;
-}
-
-.contact-breadcrumb a {
-  color: #135b6b;
-}
-
 .contact-hero {
   height: 500px;
   background-position: center;
@@ -1776,27 +1854,6 @@
   background: #fff;
 }
 
-.qsd-locator__breadcrumb {
-  height: 45px;
-  background: #fff;
-  font-size: 16px;
-}
-
-.qsd-locator__breadcrumb .page-shell {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-.qsd-locator__breadcrumb a {
-  color: #135b6b;
-}
-
-.qsd-locator__breadcrumb span {
-  margin-left: 14px;
-  color: #333;
-}
-
 .qsd-locator__hero {
   display: block;
   width: 100%;
@@ -1901,18 +1958,6 @@
 
 @mixin factory-fs($size) {
   font-size: clamp(#{$size * 0.72}px, #{math.div($size * 100, 1920)}vw, #{$size}px);
-}
-
-.factory-breadcrumb {
-  height: 45px;
-  margin: 0;
-  color: #333;
-  @include factory-fs(16);
-  line-height: 45px;
-}
-
-.factory-breadcrumb a {
-  color: #135b6b;
 }
 
 .factory-hero {
@@ -2420,7 +2465,8 @@
 .footer-inner {
   display: grid;
   grid-template-columns: 330px 1fr 270px;
-  gap: 78px;
+  column-gap: 78px;
+  row-gap: 0;
   align-items: start;
 }
 

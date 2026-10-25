@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import QsdBreadcrumb from '@/components/qsd/QsdBreadcrumb.vue'
 import { asset } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
 
@@ -10,10 +11,7 @@ const qsdStore = useQsdStore()
 </script>
 
 <template>
-  <div class="factory-breadcrumb page-shell">
-    <RouterLink to="/">Home</RouterLink>
-    <span>＞ ODM / R&amp;D</span>
-  </div>
+  <QsdBreadcrumb current="ODM / R&amp;D" />
   <section class="factory-hero" :style="{ backgroundImage: `url(${asset('u56.png')})` }">
     <div class="page-shell factory-hero__inner">
       <div class="factory-hero__copy">
