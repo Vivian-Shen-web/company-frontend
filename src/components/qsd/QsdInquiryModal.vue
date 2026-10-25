@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { message } from 'ant-design-vue'
+import type { FormInstance } from 'ant-design-vue'
 import { storeToRefs } from 'pinia'
+import { reactive, ref } from 'vue'
 
 import { vehicles } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
@@ -13,9 +15,27 @@ const qsdStore = useQsdStore()
 const { inquiryOpen } = storeToRefs(qsdStore)
 const states = ['Select State', 'Delhi', 'Maharashtra', 'Karnataka', 'Tamil Nadu', 'Gujarat']
 
-const submitInquiry = () => {
-  message.success('Thanks, QSD team will contact you soon.')
-  qsdStore.closeInquiry()
+const formRef = ref<FormInstance>()
+const formState = reactive({
+  fullName: '',
+  mobile: '',
+  vehicle: undefined as string | undefined
+})
+
+const rules = {
+  fullName: [{ required: true, message: 'Please enter your full name' }],
+  mobile: [{ required: true, message: 'Please enter your mobile number' }],
+  vehicle: [{ required: true, message: 'Please select a vehicle' }]
+}
+
+const submitInquiry = async () => {
+  try {
+    await formRef.value?.validate()
+    message.success('Thanks, QSD team will contact you soon.')
+    qsdStore.closeInquiry()
+  } catch {
+    // 校验未通过时由表单展示错误提示
+  }
 }
 </script>
 
@@ -30,13 +50,23 @@ const submitInquiry = () => {
     <div class="inquiry-modal">
       <h2>Get in touch</h2>
       <p>Please share your contact details</p>
-      <a-form class="inquiry-form" layout="vertical">
+      <a-form
+        ref="formRef"
+        :model="formState"
+        :rules="rules"
+        class="inquiry-form"
+        layout="vertical"
+      >
         <div class="inquiry-grid">
-          <a-form-item><a-input size="large" placeholder="Full Name*" /></a-form-item>
-          <a-form-item><a-input size="large" placeholder="Mobile Number*" /></a-form-item>
+          <a-form-item name="fullName" class="inquiry-field inquiry-field--required">
+            <a-input v-model:value="formState.fullName" size="large" placeholder="Full Name" />
+          </a-form-item>
+          <a-form-item name="mobile" class="inquiry-field inquiry-field--required">
+            <a-input v-model:value="formState.mobile" size="large" placeholder="Mobile Number" />
+          </a-form-item>
           <a-form-item><a-input size="large" placeholder="Email Id" /></a-form-item>
-          <a-form-item>
-            <a-select size="large" placeholder="Select Vehicle*">
+          <a-form-item name="vehicle" class="inquiry-field inquiry-field--required">
+            <a-select v-model:value="formState.vehicle" size="large" placeholder="Select Vehicle">
               <a-select-option v-for="vehicle in vehicles" :key="vehicle.id" :value="vehicle.name">
                 {{ vehicle.name }}
               </a-select-option>

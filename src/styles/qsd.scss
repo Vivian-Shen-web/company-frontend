@@ -2317,6 +2317,20 @@
   margin-bottom: 0;
 }
 
+.inquiry-field--required {
+  position: relative;
+}
+
+.inquiry-field--required::before {
+  position: absolute;
+  left: -9px;
+  top: 11px;
+  color: #ff4d4f;
+  font-size: 16px;
+  line-height: 1;
+  content: '*';
+}
+
 .inquiry-grid .ant-input,
 .inquiry-grid .ant-select-selector {
   height: 40px !important;
