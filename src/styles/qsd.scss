@@ -191,7 +191,7 @@
 
 .hero-section {
   position: relative;
-  height: 960px;
+  height: 650px;
   overflow: hidden;
   background: #03182d;
 }
@@ -219,7 +219,7 @@
 .hero-content {
   position: absolute;
   left: 119px;
-  top: 309px;
+  top: 62px;
   z-index: 1;
   width: 845px;
   color: #fff;
@@ -257,7 +257,7 @@
 
 .hero-slide--center .hero-content {
   left: 50%;
-  top: 170px;
+  top: 208px;
   width: 845px;
   transform: translateX(-50%);
   text-align: center;
@@ -639,9 +639,9 @@
 
 .testimonial-card img {
   display: block;
-  width: 60px;
-  height: 60px;
-  margin: 76px auto 12px;
+  width: 120px;
+  height: 120px;
+  margin: 60px auto 16px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -664,7 +664,7 @@
 
 .testimonial-swiper .swiper-button-prev::after,
 .testimonial-swiper .swiper-button-next::after {
-  font-size: 38px;
+  font-size: 22px;
   font-weight: 700;
 }
 
