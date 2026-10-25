@@ -1115,9 +1115,48 @@
   background: #135b6b;
 }
 
+.detail-highlight-grid span {
+  position: relative;
+}
+
 .detail-highlight-grid img {
-  width: 42px;
-  height: 42px;
+  position: absolute;
+  object-fit: contain;
+}
+
+.detail-highlight-grid .highlight-icon--seat {
+  top: 18px;
+  left: 17px;
+  width: 43px;
+  height: 33px;
+}
+
+.detail-highlight-grid .highlight-icon--seat-detail {
+  top: 24px;
+  left: 22px;
+  width: 22px;
+  height: 13px;
+}
+
+.detail-highlight-grid .highlight-icon--shock {
+  top: 11px;
+  left: 19px;
+  width: 31px;
+  height: 48px;
+}
+
+.detail-highlight-grid .highlight-icon--battery {
+  top: 21px;
+  left: 14px;
+  width: 43px;
+  height: 29px;
+}
+
+.detail-highlight-grid .highlight-icon--brake {
+  top: 16px;
+  left: 16px;
+  width: 39px;
+  height: 38px;
 }
 
 .detail-highlight-grid p {
@@ -1128,7 +1167,6 @@
 }
 
 .detail-route-section,
-.spec-section,
 .detail-related {
   background: #f6f6f6;
 }
@@ -2376,7 +2414,7 @@
 .site-footer {
   background: #03182d;
   color: #fff;
-  padding: 72px 0 30px;
+  padding: 48px 0 30px;
 }
 
 .footer-inner {
@@ -2442,7 +2480,7 @@
   align-items: center;
   gap: 54px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
-  margin-top: 64px;
+  margin-top: 29px;
   padding-top: 28px;
 }
 

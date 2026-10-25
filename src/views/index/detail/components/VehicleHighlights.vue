@@ -21,10 +21,25 @@ const qsdStore = useQsdStore()
 
 const turntableImages = ['u461.png', 'u462.png', 'u463.png', 'u464.png', 'u465.png']
 const highlightCards = [
-  { icon: 'u497.svg', text: 'Driver + 3 passenger seating' },
-  { icon: 'u505.svg', text: 'U hydraulic shock absorber' },
-  { icon: 'u492.svg', text: '72V120Ah lithium battery' },
-  { icon: 'u508.svg', text: 'Front & rear oil drum brakes' }
+  {
+    text: 'Driver + 3 passenger seating',
+    icons: [
+      { src: 'u498.svg', className: 'highlight-icon--seat' },
+      { src: 'u497.svg', className: 'highlight-icon--seat-detail' }
+    ]
+  },
+  {
+    text: 'U hydraulic shock absorber',
+    icons: [{ src: 'u508.svg', className: 'highlight-icon--shock' }]
+  },
+  {
+    text: '72V120Ah lithium battery',
+    icons: [{ src: 'u506.svg', className: 'highlight-icon--battery' }]
+  },
+  {
+    text: 'Front & rear oil drum brakes',
+    icons: [{ src: 'u505.svg', className: 'highlight-icon--brake' }]
+  }
 ]
 const routeFacts = [
   {
@@ -51,7 +66,15 @@ const swiperModules = [Navigation]
       <h2>KEY HIGHLIGHTS</h2>
       <div class="detail-highlight-grid">
         <article v-for="item in highlightCards" :key="item.text">
-          <span><img :src="asset(item.icon)" alt="" /></span>
+          <span>
+            <img
+              v-for="icon in item.icons"
+              :key="icon.src"
+              :class="icon.className"
+              :src="asset(icon.src)"
+              alt=""
+            />
+          </span>
           <p>{{ item.text }}</p>
         </article>
       </div>
