@@ -547,23 +547,25 @@
   mask: url('../assets/icons/u168.svg') 0 0 / 27.75px 17.25px no-repeat;
 }
 
-.vehicle-swiper {
-  padding: 38px 115px 0;
+.vehicle-carousel {
+  position: relative;
+  margin: 38px 120px 0;
 }
 
 .vehicle-card {
   position: relative;
   height: 495px;
+  border: 1px solid #e9e9e9;
   border-radius: 7.5px;
   background: #fff;
-  box-shadow: 0 0 7.5px rgba(161, 161, 161, 0.27);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
   transition:
     box-shadow 0.2s ease,
     transform 0.2s ease;
 }
 
 .vehicle-card:hover {
-  box-shadow: 0 0 24px rgba(161, 161, 161, 0.32);
+  box-shadow: 0 0 18px rgba(161, 161, 161, 0.24);
   transform: translateY(-4px);
 }
 
@@ -593,6 +595,27 @@
   height: 236px;
 }
 
+.vehicle-card--cargo.vehicle-card--sun-13 img {
+  top: 40.5px;
+  left: 34.5px;
+  width: 271.5px;
+  height: 207px;
+}
+
+.vehicle-card--cargo.vehicle-card--tesla-d46 img {
+  top: 30px;
+  left: 65.25px;
+  width: 236.25px;
+  height: 217.5px;
+}
+
+.vehicle-card--cargo.vehicle-card--joy-18 img {
+  top: 32.25px;
+  left: 89.25px;
+  width: 192.75px;
+  height: 204px;
+}
+
 .vehicle-card h3 {
   position: absolute;
   left: 21px;
@@ -617,15 +640,16 @@
 .metrics {
   position: absolute;
   left: 21px;
+  right: 21px;
   top: 353px;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 10.5px;
   margin: 0;
 }
 
 .metrics span {
   display: flex;
-  width: 96px;
   height: 79.5px;
   flex-direction: column;
   align-items: center;
@@ -669,30 +693,30 @@
   font-weight: 400;
 }
 
-.vehicle-swiper .swiper-button-prev,
-.vehicle-swiper .swiper-button-next {
+.vehicle-nav {
+  position: absolute;
+  top: 215px;
   width: 15px;
   height: 26px;
-  margin-top: -13px !important;
+  border: 0;
+  cursor: pointer;
+}
+
+.qsd-site .vehicle-nav {
   background: url('../assets/icons/u175.svg') no-repeat center / 15px 26px;
 }
 
-.vehicle-swiper .swiper-button-prev svg,
-.vehicle-swiper .swiper-button-next svg {
-  display: none;
+.vehicle-nav--prev {
+  left: -60px;
 }
 
-.vehicle-swiper .swiper-button-prev {
-  left: 50px !important;
-}
-
-.vehicle-swiper .swiper-button-next {
-  right: 50px !important;
+.vehicle-nav--next {
+  right: -60px;
   transform: rotate(180deg);
 }
 
-.vehicle-swiper .swiper-button-disabled {
-  opacity: 1 !important;
+.qsd-site .vehicle-nav.swiper-button-disabled {
+  opacity: 1;
 }
 
 .manufacture-section {
@@ -723,7 +747,7 @@
 
 .manufacture-metrics {
   display: flex;
-  gap: 120px;
+  gap: 100px;
   margin: 64px 0 0;
 }
 
