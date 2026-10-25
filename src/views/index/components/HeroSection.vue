@@ -63,7 +63,10 @@ const swiperModules = [Autoplay, EffectFade, Navigation]
           <p class="hero-copy">{{ slide.copy }}</p>
           <div v-if="slide.title" class="hero-actions">
             <RouterLink class="primary-pill" to="/vehicles">Explore Vehicles</RouterLink>
-            <button class="ghost-pill ghost-pill--light" type="button">Download Brochure</button>
+            <button class="ghost-pill ghost-pill--light" type="button">
+              Download Brochure
+              <img class="pill-icon" :src="asset('u24.svg')" alt="" />
+            </button>
           </div>
         </div>
       </SwiperSlide>
