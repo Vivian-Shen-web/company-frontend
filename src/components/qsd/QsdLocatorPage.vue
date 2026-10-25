@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { SearchOutlined } from '@ant-design/icons-vue'
-
 import { asset } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
 
@@ -12,6 +10,7 @@ defineProps<{
   current: string
   heroImage: string
   mapImage: string
+  narrowMap?: boolean
 }>()
 
 const qsdStore = useQsdStore()
@@ -19,29 +18,31 @@ const qsdStore = useQsdStore()
 
 <template>
   <section class="qsd-locator">
-    <div class="qsd-locator__breadcrumb page-shell">
-      <RouterLink to="/">Home</RouterLink>
-      <span>＞ {{ current }}</span>
+    <div class="qsd-locator__breadcrumb">
+      <div class="page-shell">
+        <RouterLink to="/">Home</RouterLink>
+        <span>＞ {{ current }}</span>
+      </div>
     </div>
     <img class="qsd-locator__hero" :src="asset(heroImage)" :alt="current" />
     <div class="qsd-locator__search">
-      <a-input size="large" placeholder="Search">
+      <a-input placeholder="Search">
         <template #suffix>
-          <SearchOutlined />
+          <img class="qsd-locator__search-icon" :src="asset('u1021.svg')" alt="" />
         </template>
       </a-input>
     </div>
-    <div class="qsd-locator__map-card">
+    <div class="qsd-locator__map" :class="{ 'qsd-locator__map--narrow': narrowMap }">
       <img :src="asset(mapImage)" alt="QSD locator map" />
     </div>
-    <section class="detail-bottom-cta">
-      <div class="page-shell detail-bottom-cta__inner">
+    <section class="qsd-locator__cta">
+      <div class="page-shell qsd-locator__cta-inner">
         <h2>Ready to electrify your fleet?</h2>
-        <div>
-          <button class="primary-pill" type="button" @click="qsdStore.openInquiry">
-            Requst a Quote
+        <div class="qsd-locator__cta-actions">
+          <button class="qsd-locator__quote" type="button" @click="qsdStore.openInquiry">
+            Request a Quote
           </button>
-          <RouterLink class="ghost-pill ghost-pill--light" to="/dealer">Find a Dealer</RouterLink>
+          <RouterLink class="qsd-locator__dealer" to="/dealer">Find a Dealer</RouterLink>
         </div>
       </div>
     </section>

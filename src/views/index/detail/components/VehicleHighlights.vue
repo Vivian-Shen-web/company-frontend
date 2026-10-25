@@ -27,9 +27,15 @@ const highlightCards = [
   { icon: 'u508.svg', text: 'Front & rear oil drum brakes' }
 ]
 const routeFacts = [
-  { icon: 'u486.svg', text: 'Driver + 3 passenger seating' },
-  { icon: 'u489.svg', text: '- ≤20° climbing ability' },
-  { icon: 'u490.svg', text: '220V, 60Hz charging' }
+  {
+    text: 'Driver + 3 passenger seating',
+    icons: [
+      { src: 'u493.svg', className: 'route-icon--seats' },
+      { src: 'u492.svg', className: 'route-icon--driver' }
+    ]
+  },
+  { text: '- ≤20° climbing ability', icons: [{ src: 'u489.svg', className: 'route-icon--climb' }] },
+  { text: '220V, 60Hz charging', icons: [{ src: 'u490.svg', className: 'route-icon--charge' }] }
 ]
 const swiperModules = [Navigation]
 </script>
@@ -60,13 +66,21 @@ const swiperModules = [Navigation]
           The {{ vehicle.name }} is built to keep your passengers moving — safely, comfortably and
           affordably. Ideal for city routes, shuttle services and community transport.
         </p>
-        <button class="card-link" type="button" @click="qsdStore.openInquiry">
+        <button class="detail-route-link" type="button" @click="qsdStore.openInquiry">
           Talk to fleet sales →
         </button>
       </div>
       <div class="detail-route-facts">
         <article v-for="fact in routeFacts" :key="fact.text">
-          <span><img :src="asset(fact.icon)" alt="" /></span>
+          <span>
+            <img
+              v-for="icon in fact.icons"
+              :key="icon.src"
+              :class="icon.className"
+              :src="asset(icon.src)"
+              alt=""
+            />
+          </span>
           <p>{{ fact.text }}</p>
         </article>
       </div>

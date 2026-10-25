@@ -9,6 +9,11 @@ defineOptions({
 
 <template>
   <QsdLayout>
-    <QsdLocatorPage current="Service locator" hero-image="u1081.png" map-image="u1080.png" />
+    <QsdLocatorPage
+      current="Service locator"
+      hero-image="u1081.png"
+      map-image="u1080.png"
+      narrow-map
+    />
   </QsdLayout>
 </template>
