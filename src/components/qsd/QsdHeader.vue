@@ -35,11 +35,8 @@ const vehicleMenuItems = [
 ]
 
 const goMenuVehicle = (id: string | null) => {
-  if (id) {
-    goDetail(id)
-  } else {
-    router.push('/vehicles')
-  }
+  if (!id) return
+  goDetail(id)
 }
 </script>
 
@@ -62,10 +59,12 @@ const goMenuVehicle = (id: string | null) => {
           <img :src="asset('u1342.png')" alt="QSD" />
         </RouterLink>
         <RouterLink class="nav-link" to="/">Home</RouterLink>
-        <a-dropdown placement="bottomLeft" overlay-class-name="qsd-dropdown">
-          <button class="nav-link" type="button" @click="router.push('/vehicles')">
-            Vehicles <DownOutlined class="chevron" />
-          </button>
+        <a-dropdown
+          placement="bottomLeft"
+          :trigger="['hover', 'click']"
+          overlay-class-name="qsd-dropdown"
+        >
+          <button class="nav-link" type="button">Vehicles <DownOutlined class="chevron" /></button>
           <template #overlay>
             <div class="vehicle-menu">
               <div class="vehicle-menu__side">

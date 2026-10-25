@@ -40,6 +40,10 @@ const heroSlides = [
 ]
 
 const swiperModules = [Autoplay, EffectFade, Navigation]
+
+const exploreVehicles = () => {
+  document.querySelector('#vehicles')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
 </script>
 
 <template>
@@ -62,7 +66,9 @@ const swiperModules = [Autoplay, EffectFade, Navigation]
           <h2>{{ slide.accent }}</h2>
           <p class="hero-copy">{{ slide.copy }}</p>
           <div v-if="slide.title" class="hero-actions">
-            <RouterLink class="primary-pill" to="/vehicles">Explore Vehicles</RouterLink>
+            <a class="primary-pill" href="#vehicles" @click.prevent="exploreVehicles"
+              >Explore Vehicles</a
+            >
             <button class="ghost-pill ghost-pill--light" type="button">
               Download Brochure
               <img class="pill-icon" :src="asset('u24.svg')" alt="" />

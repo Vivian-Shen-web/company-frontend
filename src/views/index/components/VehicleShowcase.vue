@@ -58,7 +58,7 @@ const carouselVehicles = computed(() =>
 </script>
 
 <template>
-  <section class="vehicle-section page-shell">
+  <section id="vehicles" class="vehicle-section page-shell">
     <a-tabs v-model:active-key="activeCategory" class="vehicle-tabs">
       <a-tab-pane v-for="category in categories" :key="category">
         <template #tab>

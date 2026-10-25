@@ -30,7 +30,7 @@ defineOptions({
       <div class="footer-links">
         <h3>QUICK LINKS</h3>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/vehicles">Vehicles</RouterLink>
+        <RouterLink to="/">Vehicles</RouterLink>
         <RouterLink to="/dealer">Dealer &amp; Service</RouterLink>
         <RouterLink to="/factory">Become a Dealer</RouterLink>
         <RouterLink to="/factory">ODM / R&amp;D</RouterLink>
