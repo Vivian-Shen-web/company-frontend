@@ -23,7 +23,7 @@ const submitInquiry = () => {
   <a-modal
     v-model:open="inquiryOpen"
     :footer="null"
-    width="920px"
+    width="750px"
     centered
     wrap-class-name="qsd-modal"
   >

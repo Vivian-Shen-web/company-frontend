@@ -969,10 +969,10 @@
 }
 
 .detail-breadcrumb {
-  height: 61px;
+  height: 45px;
   color: #333;
   font-size: 12px;
-  line-height: 61px;
+  line-height: 45px;
 }
 
 .detail-breadcrumb a {
@@ -992,7 +992,7 @@
 
 .detail-copy-panel {
   width: 760px;
-  padding-top: 145px;
+  padding-top: 100px;
 }
 
 .detail-copy-panel .eyebrow {
@@ -1364,7 +1364,6 @@
   line-height: 32px;
 }
 
-.contact-section,
 .contact-next,
 .contact-oem {
   background: #f6f6f6;
@@ -2270,48 +2269,48 @@
 }
 
 .qsd-modal .ant-modal-content {
-  border-radius: 14px;
+  border-radius: 10px;
   padding: 0;
 }
 
 .qsd-modal .ant-modal-close {
-  top: 18px;
-  right: 20px;
+  top: 8px;
+  right: 8px;
   width: 34px;
   height: 34px;
   color: #000;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 800;
 }
 
 .qsd-modal .ant-modal-close-x {
-  font-size: 24px;
+  font-size: 16px;
 }
 
 .inquiry-modal {
-  padding: 26px 40px 32px;
+  padding: 20px 31px 27px;
 }
 
 .inquiry-modal h2 {
   margin: 0 0 14px;
   color: #333;
-  font-size: 34px;
-  font-weight: 800;
-  line-height: 42px;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 34px;
   text-align: center;
 }
 
 .inquiry-modal > p {
-  margin: 0 0 28px;
+  margin: 0 0 26px;
   color: #333;
-  font-size: 22px;
-  line-height: 28px;
+  font-size: 20px;
+  line-height: 23px;
 }
 
 .inquiry-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px 26px;
+  gap: 17px 24px;
 }
 
 .inquiry-grid .ant-form-item {
@@ -2320,10 +2319,10 @@
 
 .inquiry-grid .ant-input,
 .inquiry-grid .ant-select-selector {
-  height: 48px !important;
-  border-color: #d9d9d9 !important;
-  border-radius: 6px !important;
-  padding: 0 18px !important;
+  height: 40px !important;
+  border-color: #e2e7e8 !important;
+  border-radius: 4px !important;
+  padding: 0 12px !important;
   font-size: 18px;
 }
 
@@ -2334,7 +2333,7 @@
 
 .inquiry-grid .ant-select-selection-item,
 .inquiry-grid .ant-select-selection-placeholder {
-  line-height: 46px !important;
+  line-height: 38px !important;
 }
 
 .inquiry-grid .ant-select-arrow {
@@ -2345,23 +2344,27 @@
 
 .inquiry-form .terms {
   display: grid;
-  grid-template-columns: 22px 1fr;
+  grid-template-columns: 16px 1fr;
   gap: 14px;
-  margin: 24px 0 22px;
+  margin: 20px 0 21px;
   color: #333;
   font-size: 16px;
-  line-height: 25px;
+  line-height: 24px;
 }
 
 .qsd-modal .ant-checkbox-inner {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border-color: #04a9d0;
   border-radius: 2px;
 }
 
-.terms a {
-  color: #009fc2;
+.inquiry-form .terms span {
+  color: #333;
+}
+
+.inquiry-form .terms a {
+  color: #029dba;
 }
 
 .whatsapp-check {
@@ -2369,19 +2372,19 @@
   align-items: center;
   gap: 14px;
   color: #333;
-  font-size: 17px;
+  font-size: 16px;
   line-height: 24px;
 }
 
 .modal-submit {
   display: block;
-  width: 220px;
-  height: 58px;
-  margin: 36px auto 0;
-  border-radius: 8px;
+  width: 176px;
+  height: 50px;
+  margin: 43px auto 0;
+  border-radius: 6px;
   background: #000;
   color: #fff;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
 }
 
