@@ -18,7 +18,7 @@ defineOptions({
   <footer class="site-footer">
     <div class="page-shell footer-inner">
       <div class="footer-brand">
-        <img :src="asset('u1342.png')" alt="QSD" />
+        <img :src="asset('u322.png')" alt="QSD" />
       </div>
       <div class="footer-products">
         <h3>Vehicles</h3>

@@ -27,8 +27,8 @@ const formState = reactive({
 
 const validatePhone = (_rule: unknown, value: string) => {
   if (!value) return Promise.resolve()
-  const digits = value.replace(/[\s()-]/g, '')
-  if (!/^\+?\d{7,15}$/.test(digits)) {
+  const digits = value.replace(/[\s()\-./]/g, '')
+  if (!/^(\+|00)?\d{6,15}$/.test(digits)) {
     return Promise.reject(new Error('Please enter a valid mobile number'))
   }
   return Promise.resolve()
