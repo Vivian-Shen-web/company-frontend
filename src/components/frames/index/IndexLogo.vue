@@ -12,7 +12,7 @@ const { token } = useToken()
 <template>
   <div class="logo">
     <img src="@/assets/logo.png" alt="" />
-    <h2 class="title" :style="{ color: token.colorPrimary }">麻醉科</h2>
+    <h2 class="title" :style="{ color: token.colorPrimary }">QSD Electric Autos</h2>
   </div>
 </template>
 

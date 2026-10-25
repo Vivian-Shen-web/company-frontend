@@ -14,4 +14,4 @@ const app = createApp(App)
 app.use(stores)
 app.use(router)
 
-app.mount('#xiehe')
+app.mount('#qsd')
