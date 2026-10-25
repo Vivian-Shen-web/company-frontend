@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { ArrowRightOutlined, DownloadOutlined, PhoneOutlined } from '@ant-design/icons-vue'
+import {
+  ArrowRightOutlined,
+  DownloadOutlined,
+  DownOutlined,
+  PhoneOutlined
+} from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
 
 import { asset, vehicles } from '@/services/qsd/qsdData'
@@ -39,7 +44,7 @@ const goDetail = (id: string) => {
         <RouterLink class="nav-link" to="/">Home</RouterLink>
         <a-dropdown placement="bottomLeft" overlay-class-name="qsd-dropdown">
           <button class="nav-link" type="button" @click="router.push('/vehicles')">
-            Vehicles <span class="chevron">⌄</span>
+            Vehicles <DownOutlined class="chevron" />
           </button>
           <template #overlay>
             <div class="vehicle-menu">
@@ -66,7 +71,7 @@ const goDetail = (id: string) => {
         </a-dropdown>
         <a-dropdown placement="bottomLeft" overlay-class-name="qsd-small-dropdown">
           <button class="nav-link" type="button" @click="router.push('/dealer')">
-            Dealer &amp; Service <span class="chevron">⌄</span>
+            Dealer &amp; Service <DownOutlined class="chevron" />
           </button>
           <template #overlay>
             <div class="small-menu">

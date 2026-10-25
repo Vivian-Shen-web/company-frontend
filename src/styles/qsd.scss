@@ -1,5 +1,9 @@
 .qsd-site {
+  display: flex;
+  height: 100vh;
   min-width: 1200px;
+  flex-direction: column;
+  overflow: hidden;
   background: #fff;
   color: #041d32;
   font-family: Inter, Arial, Helvetica, sans-serif;
@@ -14,6 +18,12 @@
     background: transparent;
     font: inherit;
   }
+}
+
+.qsd-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 
 .page-shell {
@@ -67,10 +77,11 @@
   font-size: 12px;
 }
 
+.qsd-site > header {
+  flex: none;
+}
+
 .main-nav {
-  position: sticky;
-  top: 0;
-  z-index: 20;
   height: 50px;
   background: #03182d;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -103,7 +114,8 @@
 
 .chevron {
   margin-left: 8px;
-  font-size: 18px;
+  margin-top: 4px;
+  font-size: 12px;
   line-height: 1;
 }
 
