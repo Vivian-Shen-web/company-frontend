@@ -46,14 +46,16 @@ const oemPoints = [
       <ContactForm />
       <ContactInfo />
     </section>
-    <section class="contact-next page-shell">
-      <h2>WHAT HAPPENS NEXT</h2>
-      <div class="contact-next__grid">
-        <article v-for="step in nextSteps" :key="step.number">
-          <span>{{ step.number }}</span>
-          <h3>{{ step.title }}</h3>
-          <p>{{ step.copy }}</p>
-        </article>
+    <section class="contact-next">
+      <div class="page-shell">
+        <h2>WHAT HAPPENS NEXT</h2>
+        <div class="contact-next__grid">
+          <article v-for="step in nextSteps" :key="step.number">
+            <span>{{ step.number }}</span>
+            <h3>{{ step.title }}</h3>
+            <p>{{ step.copy }}</p>
+          </article>
+        </div>
       </div>
     </section>
     <section class="contact-oem page-shell">

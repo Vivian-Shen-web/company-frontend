@@ -11,7 +11,6 @@ defineOptions({
   <QsdBreadcrumb current="Contact" />
   <section class="contact-hero" :style="{ backgroundImage: `url(${asset('u880.png')})` }">
     <div class="page-shell">
-      <p class="eyebrow">CONTACT US</p>
       <h1>
         <span>Let’s talk about your</span><br />
         <strong>next EV project.</strong>

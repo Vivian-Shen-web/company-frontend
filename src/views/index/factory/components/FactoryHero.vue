@@ -21,19 +21,6 @@ const qsdStore = useQsdStore()
           experience. We design, engineer and manufacture high-performance electric autos and
           3-wheelers for brands, fleets and global markets.
         </p>
-        <div class="factory-hero__stats">
-          <span>
-            <strong>15+ years</strong>
-            indian market experience
-          </span>
-          <span>
-            <strong>50,000+ sets</strong>
-            monthly production capacity
-          </span>
-          <span>
-            <strong>OEM &amp; custom<br />solutions</strong>
-          </span>
-        </div>
         <button class="sr-only" type="button" @click="qsdStore.openInquiry">Start a Project</button>
       </div>
     </div>

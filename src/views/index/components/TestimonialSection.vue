@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Navigation, Pagination } from 'swiper/modules'
+import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 
 import { asset, testimonials } from '@/services/qsd/qsdData'
@@ -13,7 +13,7 @@ defineOptions({
 })
 
 const testimonialAvatars = [asset('u308.png'), asset('u312.png'), asset('u319.png')]
-const swiperModules = [Navigation, Pagination]
+const swiperModules = [Autoplay, Navigation, Pagination]
 </script>
 
 <template>
@@ -26,6 +26,7 @@ const swiperModules = [Navigation, Pagination]
         :loop="true"
         :initial-slide="2"
         :speed="500"
+        :autoplay="{ delay: 4000, disableOnInteraction: false }"
         :navigation="true"
         :pagination="{ clickable: true }"
       >
