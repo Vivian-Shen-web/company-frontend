@@ -24,7 +24,7 @@ source_files:
 - 环境变量加载：使用 Vite 内置的 `import.meta.env`（Vite 5 原生支持），无需额外库。
 - 环境文件目录：通过 `envDir: './env'` 将默认 `.env*` 从项目根目录迁移到 `env/` 子目录。
 - 多环境模式：通过 `--mode` 参数区分 dev/prod，对应 `env/.env.dev`、`env/.env.prod` 以及基础 `env/.env`。
-- 应用内常量：`src/configs/application.ts` 提供纯 JS 常量（如 `ApplicationConfig.code = 'xiehe'`）。
+- 应用内常量：`src/configs/application.ts` 提供纯 JS 常量（如 `ApplicationConfig.code = 'qsd'`）。
 - 路由 base：通过 `import.meta.env.BASE_URL` 控制 `createWebHistory` 的基础路径。
 - 图标资源：通过 `import.meta.env.BASE_URL` 拼接 iconfont 脚本地址。
 

@@ -11,10 +11,12 @@ defineOptions({
 <template>
   <div class="qsd-site">
     <QsdHeader />
-    <main>
-      <slot />
-    </main>
-    <QsdFooter />
+    <div class="qsd-scroll">
+      <main>
+        <slot />
+      </main>
+      <QsdFooter />
+    </div>
     <QsdInquiryModal />
   </div>
 </template>

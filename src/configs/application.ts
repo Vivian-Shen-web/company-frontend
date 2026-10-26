@@ -1,5 +1,5 @@
 const ApplicationConfig = {
-  code: 'xiehe',
-  name: 'xiehe'
+  code: 'qsd',
+  name: 'qsd'
 }
 export default ApplicationConfig

@@ -71,9 +71,10 @@ export default defineConfig({
       //   `,
       // },
       scss: {
+        api: 'modern',
         additionalData: `
         @use 'sass:math';
-        @import "@/styles/variables.scss";
+        @use "@/styles/variables.scss" as *;
         `
       }
     }

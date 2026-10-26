@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { DownloadOutlined } from '@ant-design/icons-vue'
+
+import QsdBreadcrumb from '@/components/qsd/QsdBreadcrumb.vue'
+import { asset } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
 import type { VehicleModel } from '@/services/qsd/qsdData'
 
@@ -14,21 +18,25 @@ const qsdStore = useQsdStore()
 </script>
 
 <template>
-  <section class="detail-hero">
+  <QsdBreadcrumb current="Vehicles" />
+  <section class="detail-hero" :style="{ backgroundImage: `url(${asset('u13.png')})` }">
     <div class="page-shell detail-layout">
-      <div>
+      <div class="detail-copy-panel">
         <p class="eyebrow">QSD ELECTRIC AUTOS -- INDIA</p>
         <h1>{{ vehicle.name }}</h1>
+        <p class="detail-subtitle">{{ vehicle.description }} Compact, comfortable and efficient.</p>
         <p class="detail-copy">
-          A modern electric passenger tricycle designed for daily urban mobility, offers smooth ride,
-          reliable performance and low running cost.
+          A modern electric passenger tricycle designed for daily urban mobility, offers smooth
+          ride, reliable performance and low running cost.
         </p>
-        <p class="detail-copy">{{ vehicle.description }} Compact, comfortable and efficient.</p>
-        <button class="primary-pill" type="button" @click="qsdStore.openInquiry">Request a Quote</button>
-        <button class="ghost-pill ghost-pill--dark" type="button">Download Brochure</button>
-      </div>
-      <div class="vehicle-turntable">
-        <img :src="vehicle.image" :alt="vehicle.name" />
+        <div class="detail-actions">
+          <button class="primary-pill" type="button" @click="qsdStore.openInquiry">
+            Request a Quote →
+          </button>
+          <button class="ghost-pill ghost-pill--light" type="button">
+            Download Brochure <DownloadOutlined />
+          </button>
+        </div>
       </div>
     </div>
   </section>

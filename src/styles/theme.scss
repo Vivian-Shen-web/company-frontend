@@ -2,6 +2,8 @@
 // @import 'ant-design-vue/dist/antd.dark.less';
 // @root-entry-name: variable;
 
+@use '@/styles/variables.scss' as *;
+
 html:not(.dark) {
   --component-background: #{$white};
 }

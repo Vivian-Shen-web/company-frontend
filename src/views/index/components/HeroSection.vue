@@ -1,33 +1,82 @@
 <script setup lang="ts">
+import { Autoplay, EffectFade, Navigation } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+
 import { useQsdStore } from '@/stores/modules/qsd'
 import { asset } from '@/services/qsd/qsdData'
+
+import 'swiper/css'
+import 'swiper/css/effect-fade'
+import 'swiper/css/navigation'
 
 defineOptions({
   name: 'HeroSection'
 })
 
 const qsdStore = useQsdStore()
+
+const heroSlides = [
+  {
+    image: asset('u5.png'),
+    overlay: asset('u6.png'),
+    className: 'hero-slide--visual'
+  },
+  {
+    image: asset('u8.png'),
+    eyebrow: 'QSD ELECTRIC AUTOS -- INDIA',
+    title: '',
+    accent: 'BUILT FOR TOMORROW.',
+    copy: 'L5-category high-speed electric three-wheelers for passenger and cargo fleets .',
+    className: 'hero-slide--center'
+  },
+  {
+    image: asset('u13.png'),
+    eyebrow: 'QSD ELECTRIC AUTOS -- INDIA',
+    title: "ENGINEERED FOR\nINDIA'S ROADS.",
+    accent: 'BUILT FOR TOMORROW.',
+    copy: 'L5-category high-speed electric three-wheelers for passenger and cargo fleets - lower running cost, longer range, built for real Indian roads.',
+    className: 'hero-slide--copy'
+  }
+]
+
+const swiperModules = [Autoplay, EffectFade, Navigation]
+
+const exploreVehicles = () => {
+  document.querySelector('#vehicles')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
 </script>
 
 <template>
   <section class="hero-section">
-    <img class="hero-bg" :src="asset('u13.png')" alt="" />
-    <div class="page-shell hero-content">
-      <p class="eyebrow">QSD ELECTRIC AUTOS -- INDIA</p>
-      <h1>
-        ENGINEERED FOR<br />
-        INDIA'S ROADS.
-      </h1>
-      <h2>BUILT FOR TOMORROW.</h2>
-      <p class="hero-copy">
-        L5-category high-speed electric three-wheelers for passenger and cargo fleets - lower
-        running cost, longer range, built for real Indian roads.
-      </p>
-      <div class="hero-actions">
-        <RouterLink class="primary-pill" to="/vehicles">Explore Vehicles</RouterLink>
-        <button class="ghost-pill ghost-pill--light" type="button">Download Brochure</button>
-      </div>
-    </div>
+    <Swiper
+      class="hero-swiper"
+      :modules="swiperModules"
+      effect="fade"
+      :loop="true"
+      :speed="500"
+      :autoplay="{ delay: 3000, disableOnInteraction: false }"
+      :navigation="true"
+    >
+      <SwiperSlide v-for="slide in heroSlides" :key="slide.image" :class="slide.className">
+        <img class="hero-bg" :src="slide.image" alt="" />
+        <img v-if="slide.overlay" class="hero-bg hero-bg--overlay" :src="slide.overlay" alt="" />
+        <div v-if="slide.eyebrow" class="hero-content">
+          <p class="eyebrow">{{ slide.eyebrow }}</p>
+          <h1 v-if="slide.title">{{ slide.title }}</h1>
+          <h2>{{ slide.accent }}</h2>
+          <p class="hero-copy">{{ slide.copy }}</p>
+          <div v-if="slide.title" class="hero-actions">
+            <a class="primary-pill" href="#vehicles" @click.prevent="exploreVehicles"
+              >Explore Vehicles</a
+            >
+            <button class="ghost-pill ghost-pill--light" type="button">
+              Download Brochure
+              <img class="pill-icon" :src="asset('u24.svg')" alt="" />
+            </button>
+          </div>
+        </div>
+      </SwiperSlide>
+    </Swiper>
     <button class="sr-only" type="button" @click="qsdStore.openInquiry">Request a quote</button>
   </section>
 </template>
