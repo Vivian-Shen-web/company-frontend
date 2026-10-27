@@ -3,8 +3,9 @@ import { Modal, message } from 'ant-design-vue'
 import type { FormInstance } from 'ant-design-vue'
 import type { Rule } from 'ant-design-vue/es/form'
 import { storeToRefs } from 'pinia'
-import { reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 
+import { indiaStates } from '@/services/qsd/indiaLocations'
 import { vehicles } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
 
@@ -14,7 +15,6 @@ defineOptions({
 
 const qsdStore = useQsdStore()
 const { inquiryOpen } = storeToRefs(qsdStore)
-const states = ['Select State', 'Delhi', 'Maharashtra', 'Karnataka', 'Tamil Nadu', 'Gujarat']
 
 const formRef = ref<FormInstance>()
 const agreed = ref(false)
@@ -22,8 +22,18 @@ const formState = reactive({
   fullName: '',
   mobile: '',
   email: '',
-  vehicle: undefined as string | undefined
+  vehicle: undefined as string | undefined,
+  state: undefined as string | undefined,
+  city: undefined as string | undefined
 })
+
+const cityOptions = computed(
+  () => indiaStates.find((item) => item.name === formState.state)?.cities ?? []
+)
+
+const handleStateChange = () => {
+  formState.city = undefined
+}
 
 const validatePhone = (_rule: unknown, value: string) => {
   if (!value) return Promise.resolve()
@@ -107,16 +117,30 @@ const submitInquiry = async () => {
             </a-select>
           </a-form-item>
           <a-form-item>
-            <a-select size="large" placeholder="Select State">
-              <a-select-option v-for="state in states" :key="state" :value="state">
-                {{ state }}
+            <a-select
+              v-model:value="formState.state"
+              size="large"
+              placeholder="Select State"
+              show-search
+              option-filter-prop="label"
+              @change="handleStateChange"
+            >
+              <a-select-option v-for="state in indiaStates" :key="state.name" :value="state.name">
+                {{ state.name }}
               </a-select-option>
             </a-select>
           </a-form-item>
           <a-form-item>
-            <a-select size="large" placeholder="Select State">
-              <a-select-option v-for="state in states" :key="state" :value="state">
-                {{ state }}
+            <a-select
+              v-model:value="formState.city"
+              size="large"
+              placeholder="Select City"
+              show-search
+              option-filter-prop="label"
+              :disabled="!formState.state"
+            >
+              <a-select-option v-for="city in cityOptions" :key="city" :value="city">
+                {{ city }}
               </a-select-option>
             </a-select>
           </a-form-item>
