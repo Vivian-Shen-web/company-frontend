@@ -4,12 +4,15 @@ import type { FormInstance } from 'ant-design-vue'
 import type { Rule } from 'ant-design-vue/es/form'
 import { reactive, ref } from 'vue'
 
+import { submitQsdInquiry } from '@/services/qsd/qsd'
+
 defineOptions({
   name: 'ContactForm'
 })
 
 const formRef = ref<FormInstance>()
 const agreed = ref(false)
+const submitting = ref(false)
 
 const formState = reactive({
   firstName: '',
@@ -63,6 +66,27 @@ const submitContact = async () => {
     return
   }
 
+  submitting.value = true
+  try {
+    await submitQsdInquiry({
+      full_name: `${formState.firstName} ${formState.lastName}`.trim(),
+      mobile_number: formState.phone,
+      email: formState.email,
+      country: 'India',
+      state: '',
+      city: '',
+      vehicle: '',
+      message: formState.message,
+      company: formState.company,
+      interest_type: formState.interest
+    })
+  } catch {
+    message.error('Something went wrong. Please try again.')
+    return
+  } finally {
+    submitting.value = false
+  }
+
   message.success('Thanks, QSD team will contact you soon.')
 }
 </script>
@@ -104,8 +128,13 @@ const submitContact = async () => {
     <a-checkbox v-model:checked="agreed">
       I agree to be contacted by QSD about this enquiry.
     </a-checkbox>
-    <button class="primary-pill form-submit" type="button" @click="submitContact">
-      Send Message →
+    <button
+      class="primary-pill form-submit"
+      type="button"
+      :disabled="submitting"
+      @click="submitContact"
+    >
+      {{ submitting ? 'Sending...' : 'Send Message →' }}
     </button>
     <p class="privacy">We respect your privacy – no spam, ever.</p>
   </a-form>

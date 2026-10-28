@@ -1,8 +1,27 @@
+import axios from 'axios'
+
 import { categories, footerVehicleGroups, testimonials, vehicles } from './qsdData'
 
 const mockResolve = async <T>(data: T): Promise<T> => {
   return Promise.resolve(data)
 }
+
+const INQUIRY_URL = 'https://jmtsbgisvehstpvmmpwh.supabase.co/functions/v1/submit-inquiry'
+
+export interface InquiryPayload {
+  full_name: string
+  mobile_number: string
+  email: string
+  country: string
+  state: string
+  city: string
+  vehicle: string
+  message: string
+  company?: string
+  interest_type?: string
+}
+
+export const submitQsdInquiry = (payload: InquiryPayload) => axios.post(INQUIRY_URL, payload)
 
 export const getQsdVehicles = () => mockResolve(vehicles)
 

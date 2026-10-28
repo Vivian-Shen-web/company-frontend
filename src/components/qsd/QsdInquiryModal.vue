@@ -6,6 +6,7 @@ import { storeToRefs } from 'pinia'
 import { computed, reactive, ref } from 'vue'
 
 import { indiaStates } from '@/services/qsd/indiaLocations'
+import { submitQsdInquiry } from '@/services/qsd/qsd'
 import { vehicles } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
 
@@ -18,6 +19,8 @@ const { inquiryOpen } = storeToRefs(qsdStore)
 
 const formRef = ref<FormInstance>()
 const agreed = ref(false)
+const whatsapp = ref(false)
+const submitting = ref(false)
 const formState = reactive({
   fullName: '',
   mobile: '',
@@ -74,6 +77,25 @@ const submitInquiry = async () => {
       }
     })
     return
+  }
+
+  submitting.value = true
+  try {
+    await submitQsdInquiry({
+      full_name: formState.fullName,
+      mobile_number: formState.mobile,
+      email: formState.email,
+      country: 'India',
+      state: formState.state ?? '',
+      city: formState.city ?? '',
+      vehicle: formState.vehicle ?? '',
+      message: ''
+    })
+  } catch {
+    message.error('Something went wrong. Please try again.')
+    return
+  } finally {
+    submitting.value = false
   }
 
   message.success('Thanks, QSD team will contact you soon.')
@@ -153,8 +175,12 @@ const submitInquiry = async () => {
             to website's <a>Terms of Use</a> and <a>Privacy Policy.</a>
           </span>
         </p>
-        <label class="whatsapp-check"><a-checkbox /> Subscribe to WhatsApp.</label>
-        <button class="modal-submit" type="button" @click="submitInquiry">Submit</button>
+        <label class="whatsapp-check"
+          ><a-checkbox v-model:checked="whatsapp" /> Subscribe to WhatsApp.</label
+        >
+        <button class="modal-submit" type="button" :disabled="submitting" @click="submitInquiry">
+          {{ submitting ? 'Submitting...' : 'Submit' }}
+        </button>
       </a-form>
     </div>
   </a-modal>
