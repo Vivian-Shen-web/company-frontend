@@ -9,6 +9,6 @@ defineOptions({
 
 <template>
   <QsdLayout>
-    <QsdLocatorPage current="Dealer locator" hero-image="u1022.png" map-image="u1018.png" />
+    <QsdLocatorPage current="Dealer locator" hero-image="u1022.png" partner-type="dealer" />
   </QsdLayout>
 </template>

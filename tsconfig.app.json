@@ -18,7 +18,7 @@
   ],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
-    "types": [],
+    "types": ["google.maps"],
     "composite": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
 

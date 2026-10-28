@@ -1911,6 +1911,11 @@
   margin: 60px auto 0;
 }
 
+.qsd-locator__autocomplete gmp-place-autocomplete {
+  display: block;
+  width: 100%;
+}
+
 .qsd-locator__search .ant-input-affix-wrapper {
   height: clamp(56px, 4.11vw, 79px);
   border: 1px solid #aaa;

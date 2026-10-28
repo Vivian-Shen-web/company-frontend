@@ -5,4 +5,5 @@
 interface ImportMetaEnv {
     readonly VITE_SERVER_PATH: string
     readonly VITE_HOMEPAGE: string
+    readonly VITE_GOOGLE_MAPS_API_KEY: string
 }
