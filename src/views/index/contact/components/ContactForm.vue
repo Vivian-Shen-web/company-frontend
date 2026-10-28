@@ -72,7 +72,6 @@ const submitContact = async () => {
       full_name: `${formState.firstName} ${formState.lastName}`.trim(),
       mobile_number: formState.phone,
       email: formState.email,
-      country: 'India',
       state: '',
       city: '',
       vehicle: '',

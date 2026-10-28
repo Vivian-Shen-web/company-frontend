@@ -85,11 +85,12 @@ const submitInquiry = async () => {
       full_name: formState.fullName,
       mobile_number: formState.mobile,
       email: formState.email,
-      country: 'India',
       state: formState.state ?? '',
       city: formState.city ?? '',
       vehicle: formState.vehicle ?? '',
-      message: ''
+      message: '',
+      company: '',
+      interest_type: ''
     })
   } catch {
     message.error('Something went wrong. Please try again.')

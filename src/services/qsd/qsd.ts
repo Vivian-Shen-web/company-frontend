@@ -12,13 +12,12 @@ export interface InquiryPayload {
   full_name: string
   mobile_number: string
   email: string
-  country: string
   state: string
   city: string
   vehicle: string
   message: string
-  company?: string
-  interest_type?: string
+  company: string
+  interest_type: string
 }
 
 export const submitQsdInquiry = (payload: InquiryPayload) => axios.post(INQUIRY_URL, payload)
