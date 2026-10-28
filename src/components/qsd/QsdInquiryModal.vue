@@ -57,28 +57,7 @@ const rules: Record<string, Rule[]> = {
   vehicle: [{ required: true, message: 'Please select a vehicle' }]
 }
 
-const submitInquiry = async () => {
-  try {
-    await formRef.value?.validate()
-  } catch {
-    // 校验未通过时由表单展示错误提示
-    return
-  }
-
-  if (!agreed.value) {
-    Modal.confirm({
-      title: 'Agreement required',
-      content:
-        'Please agree to receive a call back from QSD and associated agencies and organizations regarding your interest in QSD brands.',
-      okText: 'OK',
-      cancelText: 'Cancel',
-      onOk: () => {
-        agreed.value = true
-      }
-    })
-    return
-  }
-
+const sendInquiry = async () => {
   submitting.value = true
   try {
     await submitQsdInquiry({
@@ -101,6 +80,33 @@ const submitInquiry = async () => {
 
   message.success('Thanks, QSD team will contact you soon.')
   qsdStore.closeInquiry()
+}
+
+const submitInquiry = async () => {
+  try {
+    await formRef.value?.validate()
+  } catch {
+    // 校验未通过时由表单展示错误提示
+    return
+  }
+
+  if (!agreed.value || !whatsapp.value) {
+    Modal.confirm({
+      title: 'Confirm your preferences',
+      content:
+        'You have not agreed to receive a call back and subscribe to WhatsApp. Click OK to agree to both and submit your details.',
+      okText: 'OK',
+      cancelText: 'Cancel',
+      onOk: async () => {
+        agreed.value = true
+        whatsapp.value = true
+        await sendInquiry()
+      }
+    })
+    return
+  }
+
+  await sendInquiry()
 }
 </script>
 
