@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useQsdStore } from '@/stores/modules/qsd'
+import { asset } from '@/services/qsd/qsdData'
 
 defineOptions({
   name: 'CtaSection'
@@ -21,7 +22,7 @@ const whatsappLink = 'https://wa.me/8615030611128'
         Get Free Quote →
       </button>
       <a class="whatsapp-pill" :href="whatsappLink" target="_blank" rel="noopener">
-        <span class="whatsapp-pill__icon" />
+        <img class="whatsapp-pill__icon" :src="asset('u397.svg')" alt="" />
         Whats APP
       </a>
     </div>

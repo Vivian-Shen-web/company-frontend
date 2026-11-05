@@ -1003,6 +1003,13 @@
   font-size: 20px;
 }
 
+.cta-section .whatsapp-pill__icon {
+  width: 34px;
+  height: 34px;
+  background: none;
+  filter: none;
+}
+
 .sub-hero,
 .contact-hero {
   background: #03182d;
@@ -1058,14 +1065,21 @@
 }
 
 .qsd-breadcrumb {
-  height: 45px;
+  box-sizing: border-box;
+  height: 60px;
+  padding-top: 22px;
   color: #333;
-  font-size: 12px;
-  line-height: 45px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 16px;
 }
 
 .qsd-breadcrumb a {
   color: #135b6b;
+}
+
+.qsd-breadcrumb span {
+  text-transform: uppercase;
 }
 
 .detail-hero {
@@ -2857,13 +2871,13 @@
   z-index: 30;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 20px;
 }
 
 .float-actions__btn {
   display: flex;
-  width: 58px;
-  height: 58px;
+  width: 60px;
+  height: 60px;
   align-items: center;
   justify-content: center;
   border: 0;
@@ -2879,18 +2893,17 @@
 }
 
 .float-actions__btn--chat {
-  background: #f28c28;
-  font-size: 24px;
+  background: #f28c28 !important;
 }
 
 .float-actions__btn--whatsapp {
   background: #25d366;
 }
 
-.float-actions__btn--whatsapp svg {
+.float-actions__icon {
+  display: block;
   width: 30px;
   height: 30px;
-  fill: #fff;
 }
 
 /* Pill buttons */
@@ -3834,7 +3847,7 @@
   height: 56px;
   margin: 25px 0 0 7px;
   border-radius: 28px;
-  background: #f59a23;
+  background: #f59a23 !important;
   color: #fff;
   font-size: 22px;
 }
