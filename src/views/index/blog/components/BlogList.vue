@@ -84,7 +84,7 @@ const posts = [
           <p>{{ post.excerpt }}</p>
           <div class="blog-card__meta">
             <span class="blog-card__date">{{ post.date }}</span>
-            <span class="blog-card__more">Read More →</span>
+            <RouterLink class="blog-card__more" to="/blog/detail">Read More →</RouterLink>
           </div>
         </div>
       </article>
