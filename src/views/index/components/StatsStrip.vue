@@ -14,26 +14,26 @@ interface StatItem {
 }
 
 const stats: StatItem[] = [
-  { icon: 'u29.svg', title: '15+ years', firstLine: 'EV manufacturing', secondLine: 'experience' },
+  { icon: 'u29.svg', title: '25+ years', firstLine: 'Sound Supply Chain', secondLine: 'Ecosystem' },
   {
     icon: 'u34.svg',
     overlay: 'u35.svg',
-    title: '50,000+ sets',
-    firstLine: 'monthly production',
-    secondLine: 'capacity'
+    title: 'ODM & R&D',
+    firstLine: 'Market-demand-driven',
+    secondLine: 'customized innovation'
   },
   {
     icon: 'u40.svg',
     overlay: 'u41.svg',
-    title: 'Quality',
-    firstLine: 'International quality',
-    secondLine: 'standards'
+    title: '48 Hours',
+    firstLine: 'Responsive After-sales',
+    secondLine: 'Services'
   },
   {
     icon: 'u45.svg',
-    title: 'Partner',
-    firstLine: 'Pan-India dealer &',
-    secondLine: 'service network'
+    title: 'Over 2 Million Units',
+    firstLine: 'Exported to more than 30',
+    secondLine: 'countries worldwide'
   }
 ]
 </script>

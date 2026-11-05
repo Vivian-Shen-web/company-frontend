@@ -1,7 +1,8 @@
 export type QsdPage =
   'home' | 'vehicles' | 'detail' | 'compare' | 'contact' | 'dealer' | 'service' | 'factory'
 
-export type VehicleCategory = '3W Passenger' | '3W Cargo' | '4W Passenger' | '4W Cargo'
+export type VehicleCategory =
+  '3W Passenger' | '3W Cargo' | '4W Passenger' | '4W Cargo' | '2W Electric'
 
 export interface VehicleModel {
   id: string
@@ -68,7 +69,7 @@ export const vehicles: VehicleModel[] = [
   },
   {
     id: 'tesla-d46',
-    name: 'QSD-TESLA(D+4)',
+    name: 'QSD-MINI SUN(D+4)',
     category: '3W Passenger',
     description: 'Driver + 4/6 passenger tricycle.',
     image: asset('u81.png'),
@@ -92,18 +93,18 @@ export const vehicles: VehicleModel[] = [
   },
   {
     id: 'joy-18',
-    name: 'QSD-JOY1+8',
+    name: 'QSD-JOY 1+3',
     category: '3W Passenger',
-    description: 'Driver + 8 passenger tricycle.',
+    description: 'Driver + 3 passenger tricycle.',
     image: asset('u82.png'),
-    speed: '55-60km/h',
-    range: '<=180km',
-    seats: '1+8',
+    speed: '≤50km/h',
+    range: '100km',
+    seats: '1+3',
     specs: {
       'Dimension (L-W-H)': '3600*1450*1980 mm',
       'Motor type': 'Permanent Magnet Motor',
       Battery: 'Long-range lithium battery',
-      'Loading capacity': 'D+8 passengers',
+      'Loading capacity': 'D+3 passengers',
       'Front wheel size': '400-12*1 Steel rim',
       Tire: '4.00-12*4'
     },
@@ -112,6 +113,32 @@ export const vehicles: VehicleModel[] = [
       'Higher passenger capacity',
       'Comfortable cabin',
       'Built for tough roads'
+    ]
+  },
+  {
+    id: 'e1',
+    name: 'QSD-E1',
+    category: '2W Electric',
+    description: 'Electric two-wheeler for daily urban commuting.',
+    image: asset('qsd-2w.png'),
+    speed: '45km/h',
+    range: '70km',
+    seats: '1',
+    specs: {
+      'Dimension (L-W-H)': '1780*680*1080 mm',
+      'Motor type': '48V 400W hub motor',
+      Battery: '48V24Ah lithium battery',
+      'Loading capacity': '1 rider',
+      'Brake type': 'Front disc & rear drum brake',
+      Tire: '3.00-10 tubeless',
+      'Top speed (km/h)': '45km/h',
+      'Endurance mileage': '60-70kms'
+    },
+    highlights: [
+      'Lightweight urban commuter',
+      '48V24Ah removable lithium battery',
+      'Front disc brake',
+      'Low running cost per km'
     ]
   }
 ]
@@ -127,7 +154,8 @@ export const categories: VehicleCategory[] = [
   '3W Passenger',
   '3W Cargo',
   '4W Passenger',
-  '4W Cargo'
+  '4W Cargo',
+  '2W Electric'
 ]
 
 export const testimonials = [

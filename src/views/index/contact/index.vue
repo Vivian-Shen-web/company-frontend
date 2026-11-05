@@ -2,6 +2,7 @@
 import { CheckCircleFilled } from '@ant-design/icons-vue'
 
 import QsdLayout from '@/components/qsd/QsdLayout.vue'
+import QsdBottomCta from '@/components/qsd/QsdBottomCta.vue'
 import { useQsdStore } from '@/stores/modules/qsd'
 import ContactForm from './components/ContactForm.vue'
 import ContactHero from './components/ContactHero.vue'
@@ -74,16 +75,6 @@ const oemPoints = [
         </span>
       </div>
     </section>
-    <section class="detail-bottom-cta">
-      <div class="page-shell detail-bottom-cta__inner">
-        <h2>Ready to electrify your fleet?</h2>
-        <div>
-          <button class="primary-pill" type="button" @click="qsdStore.openInquiry">
-            Requst a Quote
-          </button>
-          <RouterLink class="ghost-pill ghost-pill--light" to="/dealer">Find a Dealer</RouterLink>
-        </div>
-      </div>
-    </section>
+    <QsdBottomCta />
   </QsdLayout>
 </template>

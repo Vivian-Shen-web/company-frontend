@@ -20,41 +20,55 @@ const swiperModules = [Navigation]
 
 const tabLabels: Record<string, string> = {
   '3W Passenger': '3W Passenger',
-  '3W Cargo': '3W Carco',
+  '3W Cargo': '3W Cargo',
   '4W Passenger': '4W Passenger',
-  '4W Cargo': '4W Carco'
+  '4W Cargo': '4W Cargo',
+  '2W Electric': '2W Electric'
 }
 
 const tabIconClasses: Record<string, string> = {
   '3W Passenger': 'vehicle-tab__icon--3w-passenger',
   '3W Cargo': 'vehicle-tab__icon--3w-cargo',
   '4W Passenger': 'vehicle-tab__icon--4w-passenger',
-  '4W Cargo': 'vehicle-tab__icon--4w-cargo'
+  '4W Cargo': 'vehicle-tab__icon--4w-cargo',
+  '2W Electric': 'vehicle-tab__icon--2w'
 }
 
 const cardTitles: Record<string, string> = {
   'sun-13': 'QSD-SUN 1+3',
-  'tesla-d46': 'QSD-TESLA(D+4)',
-  'joy-18': 'QSD-JOY1+8 （D+8）'
+  'tesla-d46': 'QSD-MINI SUN(D+4)',
+  'joy-18': 'QSD-JOY 1+3',
+  e1: 'QSD-E1'
 }
 
 const categoryImages: Record<string, string[]> = {
   '3W Passenger': [asset('u77.png'), asset('u81.png'), asset('u82.png')],
   '3W Cargo': [asset('u201.png'), asset('u217.png'), asset('u233.png')],
   '4W Passenger': [asset('u77.png'), asset('u81.png'), asset('u82.png')],
-  '4W Cargo': [asset('u201.png'), asset('u217.png'), asset('u233.png')]
+  '4W Cargo': [asset('u201.png'), asset('u217.png'), asset('u233.png')],
+  '2W Electric': [asset('qsd-2w.png')]
 }
 
 const imageMode = computed(() =>
-  activeCategory.value === '3W Cargo' || activeCategory.value === '4W Cargo' ? 'cargo' : 'passenger'
+  activeCategory.value === '3W Cargo' ||
+  activeCategory.value === '4W Cargo' ||
+  activeCategory.value === '2W Electric'
+    ? 'cargo'
+    : 'passenger'
 )
 
-const carouselVehicles = computed(() =>
-  [...vehicles, ...vehicles].map((vehicle, index) => ({
+const carouselVehicles = computed(() => {
+  const matched = vehicles.filter((vehicle) => vehicle.category === activeCategory.value)
+  const base = matched.length
+    ? matched
+    : vehicles.filter((vehicle) => vehicle.category === '3W Passenger')
+  const images = categoryImages[activeCategory.value] ?? base.map((vehicle) => vehicle.image)
+  const repeated = base.length < 2 ? [...base, ...base, ...base] : [...base, ...base]
+  return repeated.map((vehicle, index) => ({
     ...vehicle,
-    image: categoryImages[activeCategory.value][index % vehicles.length]
+    image: images[index % images.length]
   }))
-)
+})
 </script>
 
 <template>

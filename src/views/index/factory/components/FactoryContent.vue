@@ -7,6 +7,7 @@ defineOptions({
 })
 
 const qsdStore = useQsdStore()
+const whatsappLink = 'https://wa.me/8615030611128'
 
 interface IconPart {
   src: string
@@ -411,10 +412,13 @@ const oemPoints = [
           </div>
         </div>
         <div class="factory-oem__actions">
-          <button class="primary-pill" type="button" @click="qsdStore.openInquiry">
-            Start a Project →
+          <button class="quote-pill" type="button" @click="qsdStore.openInquiry">
+            Get Free Quote →
           </button>
-          <RouterLink class="ghost-pill ghost-pill--light" to="/contact">Contact Us</RouterLink>
+          <a class="whatsapp-pill" :href="whatsappLink" target="_blank" rel="noopener">
+            <span class="whatsapp-pill__icon" />
+            Whats APP
+          </a>
         </div>
       </div>
     </section>
