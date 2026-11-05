@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ArrowRightOutlined } from '@ant-design/icons-vue'
-
 import { asset } from '@/services/qsd/qsdData'
 
 defineOptions({
@@ -81,20 +79,20 @@ const posts = [
       <article v-for="post in posts" :key="post.title" class="blog-card">
         <img :src="post.image" :alt="post.title" loading="lazy" />
         <div class="blog-card__body">
+          <span class="blog-card__tag">{{ post.tag }}</span>
           <h3>{{ post.title }}</h3>
           <p>{{ post.excerpt }}</p>
           <div class="blog-card__meta">
-            <span class="blog-card__tag">{{ post.tag }}</span>
-            <span>{{ post.date }}</span>
+            <span class="blog-card__date">{{ post.date }}</span>
+            <span class="blog-card__more">Read More →</span>
           </div>
-          <span class="blog-card__more">Read More <ArrowRightOutlined /></span>
         </div>
       </article>
     </div>
     <div class="blog-pagination">
       <span class="is-active">1</span>
       <span>2</span>
-      <span class="blog-pagination__next"><ArrowRightOutlined /></span>
+      <span class="blog-pagination__next">→</span>
     </div>
   </div>
 </template>

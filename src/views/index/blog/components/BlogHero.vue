@@ -9,11 +9,7 @@ defineOptions({
 
 <template>
   <QsdBreadcrumb current="Blog" />
-  <section class="blog-hero" :style="{ backgroundImage: `url(${asset('u1671.png')})` }">
-    <div class="page-shell blog-hero__inner">
-      <h1>Insights &amp; Guides</h1>
-      <span class="blog-hero__rule" />
-      <p>Practical knowledge for a cleaner, more efficient tomorrow.</p>
-    </div>
+  <section class="blog-hero">
+    <img :src="asset('u1678.png')" alt="Insights &amp; Guides" />
   </section>
 </template>
