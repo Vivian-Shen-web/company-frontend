@@ -22,6 +22,8 @@ export interface InquiryPayload {
 
 export const submitQsdInquiry = (payload: InquiryPayload) => axios.post(INQUIRY_URL, payload)
 
+export const subscribeQsdNewsletter = (email: string) => axios.post(INQUIRY_URL, { email })
+
 export const getQsdVehicles = () => mockResolve(vehicles)
 
 export const getQsdVehicleCategories = () => mockResolve(categories)

@@ -1,11 +1,16 @@
 <script setup lang="ts">
+import { message } from 'ant-design-vue'
 import { ref } from 'vue'
 
+import { subscribeQsdNewsletter } from '@/services/qsd/qsd'
 import { asset } from '@/services/qsd/qsdData'
+import { useQsdStore } from '@/stores/modules/qsd'
 
 defineOptions({
   name: 'BlogSidebar'
 })
+
+const qsdStore = useQsdStore()
 
 const popularPosts = [
   'Your Monthly Expenses Are All Over the Map. Here Is How to Fix That.',
@@ -16,11 +21,22 @@ const popularPosts = [
 
 const email = ref('')
 const subscribed = ref(false)
+const submitting = ref(false)
 
-const subscribe = () => {
-  if (!email.value.trim()) return
-  subscribed.value = true
-  email.value = ''
+const subscribe = async () => {
+  const value = email.value.trim()
+  if (!value || submitting.value) return
+
+  submitting.value = true
+  try {
+    await subscribeQsdNewsletter(value)
+    subscribed.value = true
+    email.value = ''
+  } catch {
+    message.error('Something went wrong. Please try again.')
+  } finally {
+    submitting.value = false
+  }
 }
 </script>
 
@@ -48,7 +64,9 @@ const subscribe = () => {
           placeholder="Your email address"
           aria-label="Your email address"
         />
-        <button type="submit">Subscribe →</button>
+        <button type="submit" :disabled="submitting">
+          {{ submitting ? 'Subscribing...' : 'Subscribe →' }}
+        </button>
       </form>
       <p v-if="subscribed" class="blog-newsletter__done">Thank you. You’re subscribed.</p>
     </div>
@@ -60,7 +78,9 @@ const subscribe = () => {
       </div>
       <h3>Contact Us</h3>
       <p>Get expert advice on model selection, customisation and fleet solutions.</p>
-      <RouterLink class="blog-contact__button" to="/contact">Contact Us →</RouterLink>
+      <button class="blog-contact__button" type="button" @click="qsdStore.openInquiry">
+        Contact Us →
+      </button>
     </div>
   </aside>
 </template>
