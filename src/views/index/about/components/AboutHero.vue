@@ -9,17 +9,7 @@ defineOptions({
 
 <template>
   <QsdBreadcrumb current="About us" />
-  <section class="about-hero" :style="{ backgroundImage: `url(${asset('u1562.png')})` }">
-    <div class="page-shell about-hero__inner">
-      <div class="about-hero__copy">
-        <h1>About us</h1>
-        <span class="about-hero__rule" />
-        <p>
-          We are a professional electric vehicle manufacturer with
-          <strong>25 years</strong> of experience in in-house design, engineering and export
-          delivery.
-        </p>
-      </div>
-    </div>
+  <section class="about-hero">
+    <img :src="asset('u1512.png')" alt="About us" />
   </section>
 </template>

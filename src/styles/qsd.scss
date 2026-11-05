@@ -1508,9 +1508,9 @@
 }
 
 .detail-bottom-cta {
-  background: #03243b;
-  color: #fff;
-  padding: 30px 0;
+  background: #f1f7f9;
+  color: #05182f;
+  padding: 22px 0;
 }
 
 .detail-bottom-cta__inner {
@@ -1521,32 +1521,44 @@
 
 .detail-bottom-cta h2 {
   margin: 0;
-  color: #fff;
-  font-size: 30px;
-  font-weight: 800;
+  color: #05182f;
+  font-size: 36px;
+  font-weight: 700;
 }
 
 .detail-bottom-cta__inner > div {
   display: flex;
-  gap: 25px;
+  align-items: center;
+  gap: 20px;
 }
 
 .detail-bottom-cta .primary-pill,
 .detail-bottom-cta .ghost-pill {
-  min-width: 266px;
+  min-width: 249px;
   height: 56px;
-  font-size: 18px;
+  font-size: 22px;
 }
 
 .detail-bottom-cta .primary-pill {
-  background: #f5a623;
+  background: #f59a23;
 }
 
 .detail-bottom-cta .quote-pill,
 .detail-bottom-cta .whatsapp-pill {
-  min-width: 266px;
+  min-width: 249px;
   height: 56px;
-  font-size: 18px;
+  font-size: 22px;
+}
+
+.detail-bottom-cta .whatsapp-pill {
+  font-size: 24px;
+}
+
+.detail-bottom-cta .whatsapp-pill__icon {
+  width: 26px;
+  height: 26px;
+  background: none;
+  filter: none;
 }
 
 .table-section .ant-table {
@@ -2927,7 +2939,7 @@
 
 .quote-pill,
 .brochure-pill {
-  background: #f28c28;
+  background: #f28c28 !important;
 }
 
 .whatsapp-pill {
@@ -3258,99 +3270,55 @@
 }
 
 /* About page */
-.about-hero {
-  position: relative;
-  height: 620px;
-  background-position: center;
-  background-size: cover;
-  color: #fff;
-}
-
-.about-hero::before {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(3, 20, 40, 0.94) 0%, rgba(3, 20, 40, 0.72) 45%, rgba(3, 20, 40, 0.2) 100%),
-    linear-gradient(0deg, rgba(3, 20, 40, 0.3), rgba(3, 20, 40, 0.3));
-  content: '';
-}
-
-.about-hero__inner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-.about-hero__copy {
-  width: 600px;
-}
-
-.about-hero h1 {
-  margin: 0;
-  color: #fff;
-  font-size: 76px;
-  font-style: italic;
-  font-weight: 800;
-  line-height: 1.05;
-}
-
-.about-hero__rule {
+.about-hero img {
   display: block;
-  width: 86px;
-  height: 8px;
-  margin: 22px 0 26px;
-  background: #04bdd2;
-}
-
-.about-hero__copy p {
-  max-width: 560px;
-  margin: 0;
-  color: #eaf3f8;
-  font-size: 20px;
-  line-height: 1.75;
-}
-
-.about-hero__copy strong {
-  color: #04bdd2;
+  width: 100%;
+  height: auto;
 }
 
 .about-eyebrow {
   margin: 0 0 14px;
   color: #135b6b;
-  font-size: 14px;
+  font-size: 24px;
   font-weight: 700;
-  letter-spacing: 4px;
+  line-height: 1.2;
+  letter-spacing: 1px;
 }
 
 .about-intro {
-  display: grid;
-  grid-template-columns: 57% 39%;
-  column-gap: 4%;
-  align-items: center;
+  background: #f3f5f6;
   padding: 90px 0;
 }
 
+.about-intro__inner {
+  display: grid;
+  grid-template-columns: 692px 1fr;
+  column-gap: 65px;
+  align-items: center;
+}
+
+.about-intro .about-eyebrow {
+  font-size: 26px;
+}
+
 .about-intro h2 {
-  margin: 0 0 24px;
-  color: #0e2a3a;
-  font-size: 42px;
-  font-weight: 800;
+  margin: 0 0 28px;
+  color: #05182f;
+  font-size: 34px;
+  font-weight: 700;
   line-height: 1.2;
 }
 
 .about-intro__lead {
-  margin: 0 0 18px;
+  margin: 0 0 20px;
   color: #555;
-  font-size: 16px;
-  line-height: 1.8;
+  font-size: 22px;
+  line-height: 34px;
 }
 
 .about-intro__points {
   display: grid;
-  gap: 12px;
-  margin: 28px 0 0;
+  margin: 24px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -3358,24 +3326,34 @@
 .about-intro__points li {
   display: flex;
   align-items: center;
-  gap: 12px;
-  color: #333;
-  font-size: 16px;
+  gap: 14px;
+  color: #05182f;
+  font-size: 24px;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 50px;
 }
 
 .about-intro__points img {
-  width: 24px;
-  height: 24px;
+  width: 27px;
+  height: 27px;
   flex: none;
 }
 
 .about-intro__image {
   width: 100%;
-  height: 520px;
-  border-radius: 8px;
+  height: 600px;
+  border-radius: 16px;
   object-fit: cover;
+}
+
+.about-icon {
+  position: relative;
+  display: block;
+}
+
+.about-icon img {
+  position: absolute;
+  display: block;
 }
 
 .about-driving,
@@ -3393,9 +3371,9 @@
 .about-why h2,
 .about-workshops h2 {
   margin: 0 0 44px;
-  color: #0e2a3a;
-  font-size: 42px;
-  font-weight: 800;
+  color: #05182f;
+  font-size: 36px;
+  font-weight: 700;
 }
 
 .about-driving__grid {
@@ -3405,8 +3383,9 @@
 }
 
 .about-driving__grid article {
-  padding: 44px 36px 40px;
-  border-radius: 10px;
+  min-height: 420px;
+  padding: 56px 40px 40px;
+  border-radius: 20px;
   background: #fff;
   box-shadow: 0 10px 30px rgba(6, 32, 54, 0.06);
 }
@@ -3415,31 +3394,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 96px;
-  height: 96px;
-  margin: 0 auto 26px;
+  width: 127px;
+  height: 127px;
+  margin: 0 auto 28px;
   border-radius: 50%;
-  background: #e8f6f8;
-  color: #04a5bb;
-  font-size: 38px;
+  background: #ecf2fb;
 }
 
 .about-driving__grid h3 {
-  margin: 0 0 14px;
-  color: #0e2a3a;
-  font-size: 22px;
+  margin: 0 0 16px;
+  color: #05182f;
+  font-size: 30px;
   font-weight: 700;
 }
 
 .about-driving__grid p {
-  margin: 0;
-  color: #666;
-  font-size: 15px;
-  line-height: 1.7;
+  max-width: 380px;
+  margin: 0 auto;
+  color: #555;
+  font-size: 22px;
+  line-height: 34px;
 }
 
 .about-why {
-  background: #0a1c2b;
+  background: #02172c;
   color: #fff;
 }
 
@@ -3457,123 +3435,125 @@
 }
 
 .about-subtitle {
-  margin: 0 0 46px;
-  color: #666;
-  font-size: 17px;
+  margin: 0 0 54px;
+  color: #555;
+  font-size: 22px;
+  line-height: 34px;
 }
 
 .about-why .about-subtitle {
-  color: #b9c9d4;
+  color: #f2f2f2;
 }
 
 .about-why__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
+  gap: 33px;
   text-align: left;
 }
 
 .about-why__grid article {
   display: flex;
-  gap: 18px;
-  padding: 30px 28px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
+  gap: 23px;
+  min-height: 190px;
+  padding: 36px 30px 30px 39px;
+  border-radius: 20px;
+  background: #0a253e;
 }
 
 .about-why__icon {
   flex: none;
-  color: #04bdd2;
-  font-size: 34px;
-  line-height: 1;
+  margin-top: 2px;
 }
 
 .about-why__grid h3 {
-  margin: 0 0 10px;
+  margin: 0 0 14px;
   color: #fff;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
+  line-height: 1.2;
 }
 
 .about-why__grid p {
   margin: 0;
-  color: #aebfcc;
-  font-size: 15px;
-  line-height: 1.65;
+  color: #f2f2f2;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .about-workshops__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 33px;
   text-align: left;
 }
 
 .about-workshops__grid article {
   overflow: hidden;
-  border: 1px solid #ececec;
-  border-radius: 10px;
+  min-height: 360px;
+  border-radius: 20px;
   background: #fff;
+  box-shadow: 0 6px 20px rgba(6, 32, 54, 0.06);
 }
 
 .about-workshops__grid img {
   display: block;
   width: 100%;
-  height: 270px;
+  height: 200px;
   object-fit: cover;
 }
 
 .about-workshops__grid h3 {
-  margin: 24px 26px 10px;
-  color: #0e2a3a;
-  font-size: 20px;
+  margin: 12px 29px 10px;
+  color: #05182f;
+  font-size: 24px;
   font-weight: 700;
+  line-height: 30px;
 }
 
 .about-workshops__grid p {
   margin: 0;
-  padding: 0 26px 28px;
+  padding: 0 29px 24px;
   color: #555;
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .about-global {
-  background: #03182d;
+  background: #02172c;
   color: #fff;
 }
 
 .about-global__inner {
   display: grid;
-  grid-template-columns: 55% 41%;
-  column-gap: 4%;
+  grid-template-columns: minmax(0, 682px) minmax(0, 840px);
+  justify-content: space-between;
   align-items: center;
-  padding: 80px 0;
+  padding: 50px 0;
 }
 
 .about-global .about-eyebrow {
   color: #04bdd2;
+  font-size: 24px;
 }
 
 .about-global h2 {
-  margin: 0 0 22px;
+  margin: 0 0 24px;
   color: #fff;
-  font-size: 42px;
-  font-weight: 800;
+  font-size: 36px;
+  font-weight: 700;
 }
 
 .about-global p {
   margin: 0 0 16px;
-  color: #d6e2ea;
-  font-size: 16px;
-  line-height: 1.8;
+  color: #d7d7d7;
+  font-size: 23px;
+  line-height: 34px;
 }
 
 .about-global img {
   width: 100%;
-  height: 420px;
-  border-radius: 8px;
+  height: 440px;
   object-fit: cover;
 }
 
@@ -3854,24 +3834,151 @@
 }
 
 @media (max-width: 1400px) {
-  .about-hero h1 {
-    font-size: 64px;
+  .about-intro__inner {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
   }
 
-  .about-hero__copy {
-    width: 520px;
+  .about-intro h2 {
+    font-size: 32px;
   }
 
-  .about-intro h2,
+  .about-intro__lead {
+    font-size: 19px;
+    line-height: 30px;
+  }
+
+  .about-intro__points li {
+    font-size: 20px;
+    line-height: 42px;
+  }
+
+  .about-intro__image {
+    height: 480px;
+  }
+
+  .about-eyebrow {
+    font-size: 21px;
+  }
+
+  .about-intro .about-eyebrow {
+    font-size: 22px;
+  }
+
   .about-driving h2,
   .about-why h2,
   .about-workshops h2,
   .about-global h2 {
-    font-size: 36px;
+    font-size: 32px;
   }
 
-  .about-intro__image {
-    height: 460px;
+  .about-driving__grid article {
+    min-height: 360px;
+    padding: 40px 28px 32px;
+  }
+
+  .about-driving__icon {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 22px;
+  }
+
+  .about-driving__grid article .about-icon {
+    transform: scale(0.79);
+    transform-origin: center;
+  }
+
+  .about-driving__grid h3 {
+    font-size: 26px;
+  }
+
+  .about-driving__grid p {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .about-subtitle {
+    font-size: 19px;
+    line-height: 30px;
+    margin-bottom: 40px;
+  }
+
+  .about-why__grid {
+    gap: 26px;
+  }
+
+  .about-why__grid article {
+    gap: 16px;
+    padding: 28px 22px 24px 28px;
+  }
+
+  .about-why__grid article .about-icon {
+    transform: scale(0.82);
+    transform-origin: left top;
+  }
+
+  .about-why__grid h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .about-why__grid p {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .about-workshops__grid {
+    gap: 26px;
+  }
+
+  .about-workshops__grid article {
+    min-height: 320px;
+  }
+
+  .about-workshops__grid img {
+    height: 170px;
+  }
+
+  .about-workshops__grid h3 {
+    margin: 12px 22px 8px;
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .about-workshops__grid p {
+    padding: 0 22px 22px;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .about-global__inner {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
+    padding: 60px 0;
+  }
+
+  .about-global p {
+    font-size: 19px;
+    line-height: 30px;
+  }
+
+  .about-global img {
+    height: 400px;
+  }
+
+  .detail-bottom-cta h2 {
+    font-size: 28px;
+  }
+
+  .detail-bottom-cta .quote-pill,
+  .detail-bottom-cta .whatsapp-pill {
+    min-width: 210px;
+    height: 52px;
+    font-size: 18px;
+  }
+
+  .detail-bottom-cta .whatsapp-pill {
+    font-size: 20px;
   }
 
   .detail-section-title {
