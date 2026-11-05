@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { DownloadOutlined } from '@ant-design/icons-vue'
-
 import QsdBreadcrumb from '@/components/qsd/QsdBreadcrumb.vue'
 import { asset } from '@/services/qsd/qsdData'
 import type { VehicleModel } from '@/services/qsd/qsdData'
+import { useQsdStore } from '@/stores/modules/qsd'
 
 defineOptions({
   name: 'DetailHero'
@@ -13,7 +12,7 @@ defineProps<{
   vehicle: VehicleModel
 }>()
 
-const whatsappLink = 'https://wa.me/8615030611128'
+const qsdStore = useQsdStore()
 </script>
 
 <template>
@@ -29,13 +28,13 @@ const whatsappLink = 'https://wa.me/8615030611128'
           ride, reliable performance and low running cost.
         </p>
         <div class="detail-actions">
-          <button class="brochure-pill" type="button">
-            Download Brochure <DownloadOutlined />
+          <button class="quote-pill" type="button" @click="qsdStore.openInquiry">
+            Request a Quote →
           </button>
-          <a class="whatsapp-pill" :href="whatsappLink" target="_blank" rel="noopener">
-            <span class="whatsapp-pill__icon" />
-            Whats APP
-          </a>
+          <button class="ghost-pill ghost-pill--light" type="button">
+            Download Brochure
+            <img class="pill-icon" :src="asset('u24.svg')" alt="" />
+          </button>
         </div>
       </div>
     </div>
