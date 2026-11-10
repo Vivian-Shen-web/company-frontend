@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
 defineOptions({
   name: 'ConclusionFaq'
 })
@@ -29,6 +31,12 @@ const faqs = [
     answer: 'The QSD SUN1+3 uses a 1+3 seating layout — one driver plus three passengers.'
   }
 ]
+
+const activeIndex = ref<number | null>(null)
+
+const toggle = (index: number) => {
+  activeIndex.value = activeIndex.value === index ? null : index
+}
 </script>
 
 <template>
@@ -43,11 +51,22 @@ const faqs = [
         Discover more electric mobility products from QSD.
       </p>
       <h2 class="detail-section-title detail-section-title--faq">FAQ</h2>
-      <a-collapse class="detail-faq" :bordered="false" expand-icon-position="end">
-        <a-collapse-panel v-for="item in faqs" :key="item.question" :header="item.question">
-          <p>{{ item.answer }}</p>
-        </a-collapse-panel>
-      </a-collapse>
+      <div class="detail-faq">
+        <div
+          v-for="(item, index) in faqs"
+          :key="item.question"
+          class="detail-faq__item"
+          :class="{ 'is-open': activeIndex === index }"
+        >
+          <button class="detail-faq__head" type="button" @click="toggle(index)">
+            <span>{{ item.question }}</span>
+            <span class="detail-faq__icon" />
+          </button>
+          <div v-show="activeIndex === index" class="detail-faq__body">
+            <p>{{ item.answer }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>

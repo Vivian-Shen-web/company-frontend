@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, ref } from 'vue'
+import { computed } from 'vue'
+import { Autoplay, Navigation } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/vue'
 
 import QsdBreadcrumb from '@/components/qsd/QsdBreadcrumb.vue'
 import { asset } from '@/services/qsd/qsdData'
 import type { VehicleModel } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
+
+import 'swiper/css'
+import 'swiper/css/navigation'
 
 defineOptions({
   name: 'DetailHero'
@@ -22,25 +27,32 @@ const angleImages: Record<string, string[]> = {
 }
 
 const images = computed(() => angleImages[props.vehicle.id] ?? [props.vehicle.image])
-const activeIndex = ref(0)
-const activeImage = computed(() => images.value[activeIndex.value % images.value.length])
 
-const step = (direction: number) => {
-  const total = images.value.length
-  activeIndex.value = (activeIndex.value + direction + total) % total
-}
-
-const timer = window.setInterval(() => step(1), 4000)
-
-const stop = () => window.clearInterval(timer)
-onBeforeUnmount(stop)
+const swiperModules = [Autoplay, Navigation]
 
 const batteryValue = computed(() => {
   const raw = props.vehicle.specs.Battery ?? ''
   return raw.match(/(\d+V\s?\d+Ah)/i)?.[1] ?? raw
 })
 
-const highlights = computed(() => [
+interface HighlightOverlay {
+  icon: string
+  width: number
+  height: number
+  left: number
+  top: number
+}
+
+interface Highlight {
+  label: string
+  value: string
+  icon: string
+  width: number
+  height: number
+  overlay?: HighlightOverlay
+}
+
+const highlights = computed<Highlight[]>(() => [
   {
     label: 'Motor',
     value: props.vehicle.specs.Motor ?? '72V4000w',
@@ -73,22 +85,35 @@ const highlights = computed(() => [
   }
 ])
 
+const overlaySrc = (item: Highlight) => (item.overlay ? asset(item.overlay.icon) : '')
+
+const overlayStyle = (item: Highlight) => ({
+  width: `${item.overlay?.width ?? 0}px`,
+  height: `${item.overlay?.height ?? 0}px`,
+  left: `${item.overlay?.left ?? 0}px`,
+  top: `${item.overlay?.top ?? 0}px`
+})
+
 const enquire = () => qsdStore.openInquiry()
 </script>
 
 <template>
   <QsdBreadcrumb current="Vehicles" />
   <section class="detail-hero">
-    <div class="page-shell detail-hero__grid" @mouseenter="stop">
-      <button
-        class="detail-arrow detail-arrow--prev"
-        type="button"
-        aria-label="Previous"
-        @click="step(-1)"
-      />
-      <div class="detail-stage">
-        <img :src="asset(activeImage)" :alt="vehicle.name" />
-      </div>
+    <div class="page-shell detail-hero__grid">
+      <button class="detail-arrow detail-arrow--prev" type="button" aria-label="Previous" />
+      <Swiper
+        class="detail-stage"
+        :modules="swiperModules"
+        :loop="images.length > 1"
+        :speed="600"
+        :autoplay="{ delay: 3000, disableOnInteraction: false }"
+        :navigation="{ prevEl: '.detail-arrow--prev', nextEl: '.detail-arrow--next' }"
+      >
+        <SwiperSlide v-for="image in images" :key="image">
+          <img :src="asset(image)" :alt="vehicle.name" />
+        </SwiperSlide>
+      </Swiper>
       <div class="detail-panel">
         <h2>KEY HIGHLIGHTS</h2>
         <div class="detail-panel__tiles">
@@ -102,13 +127,8 @@ const enquire = () => qsdStore.openInquiry()
               <img
                 v-if="item.overlay"
                 class="detail-tile__overlay"
-                :src="asset(item.overlay.icon)"
-                :style="{
-                  width: `${item.overlay.width}px`,
-                  height: `${item.overlay.height}px`,
-                  left: `${item.overlay.left}px`,
-                  top: `${item.overlay.top}px`
-                }"
+                :src="overlaySrc(item)"
+                :style="overlayStyle(item)"
                 alt=""
               />
             </span>
@@ -120,12 +140,7 @@ const enquire = () => qsdStore.openInquiry()
         </div>
         <button class="detail-enquire" type="button" @click="enquire">Enquire Now</button>
       </div>
-      <button
-        class="detail-arrow detail-arrow--next"
-        type="button"
-        aria-label="Next"
-        @click="step(1)"
-      />
+      <button class="detail-arrow detail-arrow--next" type="button" aria-label="Next" />
     </div>
   </section>
 </template>

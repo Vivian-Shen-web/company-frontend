@@ -108,15 +108,16 @@ export const footerVehicleGroups = [
 export const siteContact = {
   email: 'Jeff.cao@pcqs-china.com',
   phone: '+8615030611128',
-  whatsapp: 'https://wa.me/8615030611128',
+  whatsapp:
+    'https://api.whatsapp.com/send/?phone=8615030611128&text&type=phone_number&app_absent=0',
   companyAddress:
     'Room A516, 5th floor, Efficiency House, 35 Tai Yau Street, San Po Kong, Kowloon, HONGKONG',
   factoryAddress: 'Qianwang Industry Zone, Xianghe County, Langfang City, Hebei Province, China',
   maps: 'https://www.google.com/maps/place/QSPOWER+GROUP+CO.,+LIMITED/@22.3351411,114.196021,21z/data=!4m6!3m5!1s0x340406db351c9ce7:0x8734e06c2b97d345!8m2!3d22.3351411!4d114.196021!16s%2Fg%2F11yqp4p4hc?entry=ttu&g_ep=EgoyMDI1MTAyOC4wIKXMDSoASAFQAw%3D%3D',
   socials: {
-    facebook: 'https://www.facebook.com/',
-    instagram: 'https://www.instagram.com/',
-    linkedin: 'https://www.linkedin.com/'
+    facebook: 'https://www.facebook.com/jeff.cao.507',
+    instagram: 'https://www.instagram.com/jeff_e_rickshaw_/',
+    youtube: 'https://www.youtube.com/@JeffCao688'
   }
 }
 

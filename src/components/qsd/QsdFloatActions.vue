@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { asset } from '@/services/qsd/qsdData'
+import { asset, siteContact } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
 
 defineOptions({
@@ -7,7 +7,7 @@ defineOptions({
 })
 
 const qsdStore = useQsdStore()
-const whatsappLink = 'https://wa.me/8615030611128'
+const whatsappLink = siteContact.whatsapp
 </script>
 
 <template>

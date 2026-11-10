@@ -2,9 +2,6 @@
 import {
   ClockCircleOutlined,
   EnvironmentOutlined,
-  FacebookFilled,
-  InstagramOutlined,
-  LinkedinFilled,
   MailOutlined,
   ShopOutlined
 } from '@ant-design/icons-vue'
@@ -55,7 +52,7 @@ const qsdStore = useQsdStore()
             rel="noreferrer"
             aria-label="Facebook"
           >
-            <FacebookFilled />
+            <img :src="asset('social-facebook.svg')" alt="Facebook" />
           </a>
           <a
             :href="siteContact.socials.instagram"
@@ -63,15 +60,15 @@ const qsdStore = useQsdStore()
             rel="noreferrer"
             aria-label="Instagram"
           >
-            <InstagramOutlined />
+            <img :src="asset('social-instagram.svg')" alt="Instagram" />
           </a>
           <a
-            :href="siteContact.socials.linkedin"
+            :href="siteContact.socials.youtube"
             target="_blank"
             rel="noreferrer"
-            aria-label="LinkedIn"
+            aria-label="YouTube"
           >
-            <LinkedinFilled />
+            <img :src="asset('social-youtube.svg')" alt="YouTube" />
           </a>
         </div>
         <div class="footer-contact">
