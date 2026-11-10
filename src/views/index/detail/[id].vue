@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 
 import QsdLayout from '@/components/qsd/QsdLayout.vue'
 import QsdBottomCta from '@/components/qsd/QsdBottomCta.vue'
+import QsdBreadcrumb from '@/components/qsd/QsdBreadcrumb.vue'
 import { vehicles } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
 import ConclusionFaq from './components/ConclusionFaq.vue'
@@ -34,6 +35,7 @@ watchEffect(() => {
 
 <template>
   <QsdLayout>
+    <QsdBreadcrumb current="Vehicles" />
     <DetailBanner :vehicle="vehicle" />
     <DetailHero :vehicle="vehicle" />
     <VehicleHighlights :vehicle="vehicle" />

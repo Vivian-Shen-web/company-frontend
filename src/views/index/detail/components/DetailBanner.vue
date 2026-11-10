@@ -20,11 +20,11 @@ const qsdStore = useQsdStore()
     <div class="page-shell detail-banner__inner">
       <p class="detail-banner__eyebrow">QSD ELECTRIC AUTOS -- INDIA</p>
       <h1>{{ vehicle.name }}</h1>
+      <p class="detail-banner__copy">Driver + 3 passengers.Compact, comfortable and efficient.</p>
       <p class="detail-banner__copy">
         A modern electric passenger tricycle designed for daily urban mobility, offers smooth ride,
         It a reliable performance and low running g cost.
       </p>
-      <p class="detail-banner__copy">Driver + 3 passengers.Compact, comfortable and efficient.</p>
       <div class="detail-banner__actions">
         <button class="detail-banner__quote" type="button" @click="qsdStore.openInquiry">
           Request a Quote

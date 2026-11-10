@@ -3,7 +3,6 @@ import { computed } from 'vue'
 import { Autoplay, Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 
-import QsdBreadcrumb from '@/components/qsd/QsdBreadcrumb.vue'
 import { asset } from '@/services/qsd/qsdData'
 import type { VehicleModel } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
@@ -98,7 +97,6 @@ const enquire = () => qsdStore.openInquiry()
 </script>
 
 <template>
-  <QsdBreadcrumb current="Vehicles" />
   <section class="detail-hero">
     <div class="page-shell detail-hero__grid">
       <button class="detail-arrow detail-arrow--prev" type="button" aria-label="Previous" />
