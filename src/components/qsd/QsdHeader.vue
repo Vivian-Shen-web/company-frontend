@@ -8,7 +8,7 @@ import {
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-import { asset } from '@/services/qsd/qsdData'
+import { asset, siteContact } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
 
 defineOptions({
@@ -23,30 +23,15 @@ const goDetail = (id: string) => {
   router.push(`/detail/${id}`)
 }
 
-const vehicleMenuCategories = [
-  '3W Passenger',
-  '3W Cargo',
-  '4W Passenger',
-  '4W Cargo',
-  '2W Electric'
-]
+const vehicleMenuCategories = ['3W Passenger', '3W Cargo']
 
 const activeVehicleMenu = ref('3W Passenger')
 
 const vehicleMenuItems = computed(() => {
-  if (activeVehicleMenu.value === '2W Electric') {
-    return [{ label: 'QSD-E1', image: 'qsd-2w.png', size: 'sun', id: 'e1' }]
+  if (activeVehicleMenu.value === '3W Cargo') {
+    return [{ label: 'QSD-SUN Loader', image: 'sun-cargo.png', size: 'sun', id: 'sun-cargo' }]
   }
-  return [
-    { label: 'SUN 1+3', image: 'u1370.png', size: 'sun', id: 'sun-13' },
-    { label: 'TESLA', image: 'u81.png', size: 'tesla', id: 'tesla-d46' },
-    { label: 'JOY SPORT 1+8', image: 'u82.png', size: 'joy', id: 'joy-18' },
-    { label: 'MASTER', image: 'u1379.png', size: 'master', id: null },
-    { label: 'SUN 1+3', image: 'u1370.png', size: 'sun', id: 'sun-13' },
-    { label: 'TESLA', image: 'u81.png', size: 'tesla', id: 'tesla-d46' },
-    { label: 'JOY SPORT 1+8', image: 'u82.png', size: 'joy', id: 'joy-18' },
-    { label: 'MASTER', image: 'u1379.png', size: 'master', id: null }
-  ]
+  return [{ label: 'QSD-SUN 1+3', image: 'u1370.png', size: 'sun', id: 'sun-13' }]
 })
 
 const goMenuVehicle = (id: string | null) => {
@@ -55,14 +40,8 @@ const goMenuVehicle = (id: string | null) => {
 }
 
 const brochureCategories = [
-  {
-    name: '3W Passenger',
-    models: ['SUN1+3', 'TESLA', 'MASTER', 'QSD X3', 'JOY SPORT1+3', 'DRAGON']
-  },
-  { name: '3W Cargo', models: [] },
-  { name: '4W Passenger', models: [] },
-  { name: '4W Cargo', models: [] },
-  { name: '2W Electric', models: [] }
+  { name: '3W Passenger', models: ['SUN 1+3'] },
+  { name: '3W Cargo', models: ['SUN CARGO 1.8 LOADER'] }
 ]
 
 const brochureLanguages = [
@@ -75,7 +54,7 @@ const brochureLanguages = [
 ]
 
 const openBrochureCategory = ref('3W Passenger')
-const openBrochureModel = ref('SUN1+3')
+const openBrochureModel = ref('SUN 1+3')
 
 const toggleBrochureCategory = (name: string) => {
   openBrochureCategory.value = openBrochureCategory.value === name ? '' : name
@@ -127,7 +106,7 @@ const toggleBrochureCategory = (name: string) => {
                       {{ model }}
                     </button>
                     <div
-                      v-if="model === 'SUN1+3' && openBrochureModel === 'SUN1+3'"
+                      v-if="model === 'SUN 1+3' && openBrochureModel === 'SUN 1+3'"
                       class="brochure-menu__langs"
                     >
                       <a
@@ -147,14 +126,16 @@ const toggleBrochureCategory = (name: string) => {
           </template>
         </a-dropdown>
         <PhoneOutlined class="phone-icon" />
-        <span class="phone-number">+8615030611128</span>
+        <a class="phone-number" :href="siteContact.whatsapp" target="_blank" rel="noreferrer">{{
+          siteContact.phone
+        }}</a>
       </div>
     </div>
 
     <nav class="main-nav">
       <div class="page-shell main-nav__inner">
         <RouterLink class="logo-button" to="/">
-          <img :src="asset('u1342.png')" alt="QSD" />
+          <img :src="asset('qsd-logo.png')" alt="QSD" />
         </RouterLink>
         <RouterLink class="nav-link" to="/">Home</RouterLink>
         <RouterLink class="nav-link" to="/about">About us</RouterLink>
@@ -200,10 +181,9 @@ const toggleBrochureCategory = (name: string) => {
         </a-dropdown>
         <RouterLink class="nav-link" to="/factory">R&amp;D</RouterLink>
         <RouterLink class="nav-link" to="/blog">Blogs</RouterLink>
+        <RouterLink class="nav-link" to="/shorts">Shorts</RouterLink>
         <RouterLink class="nav-link" to="/contact">Contact us</RouterLink>
-        <button class="nav-link" type="button" @click="qsdStore.openInquiry">
-          Become a Dealer
-        </button>
+        <button class="nav-link" type="button" @click="qsdStore.openDealer">Become a Dealer</button>
         <button class="enquire-button" type="button" @click="qsdStore.openInquiry">
           Enquire Now
           <ArrowRightOutlined />

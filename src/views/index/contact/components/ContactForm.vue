@@ -20,7 +20,7 @@ const formState = reactive({
   email: '',
   phone: '',
   company: '',
-  interest: 'Becoming a dealer',
+  vehicle: '',
   message: ''
 })
 
@@ -74,10 +74,10 @@ const submitContact = async () => {
       email: formState.email,
       state: '',
       city: '',
-      vehicle: '',
+      vehicle: formState.vehicle,
       message: formState.message,
       company: formState.company,
-      interest_type: formState.interest
+      interest_type: 'contact'
     })
   } catch {
     message.error('Something went wrong. Please try again.')
@@ -110,11 +110,10 @@ const submitContact = async () => {
     <a-form-item name="company" label="Company / Brand">
       <a-input v-model:value="formState.company" size="large" placeholder="Your company name" />
     </a-form-item>
-    <a-form-item name="interest" label="I am interested in">
-      <a-select v-model:value="formState.interest" size="large">
-        <a-select-option value="Becoming a dealer">Becoming a dealer</a-select-option>
-        <a-select-option value="Fleet order">Fleet order</a-select-option>
-        <a-select-option value="OEM partnership">OEM partnership</a-select-option>
+    <a-form-item name="vehicle" label="Vehicles">
+      <a-select v-model:value="formState.vehicle" size="large" placeholder="Please choose">
+        <a-select-option value="QSD-SUN 1+3">QSD-SUN 1+3</a-select-option>
+        <a-select-option value="QSD-SUN Loader">QSD-SUN Loader</a-select-option>
       </a-select>
     </a-form-item>
     <a-form-item name="message" label="Message">

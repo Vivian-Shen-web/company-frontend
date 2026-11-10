@@ -7,6 +7,7 @@ export const useQsdStore = defineStore('qsd', () => {
   const currentCategory = ref<VehicleCategory>('3W Passenger')
   const activeVehicleId = ref(vehicles[0].id)
   const inquiryOpen = ref(false)
+  const dealerOpen = ref(false)
 
   const activeVehicle = computed(() => {
     return vehicles.find((vehicle) => vehicle.id === activeVehicleId.value) ?? vehicles[0]
@@ -28,14 +29,25 @@ export const useQsdStore = defineStore('qsd', () => {
     inquiryOpen.value = false
   }
 
+  const openDealer = () => {
+    dealerOpen.value = true
+  }
+
+  const closeDealer = () => {
+    dealerOpen.value = false
+  }
+
   return {
     currentCategory,
     activeVehicleId,
     inquiryOpen,
+    dealerOpen,
     activeVehicle,
     filteredVehicles,
     setActiveVehicle,
     openInquiry,
-    closeInquiry
+    closeInquiry,
+    openDealer,
+    closeDealer
   }
 })

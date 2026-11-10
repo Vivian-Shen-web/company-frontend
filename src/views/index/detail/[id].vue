@@ -9,7 +9,6 @@ import { useQsdStore } from '@/stores/modules/qsd'
 import ConclusionFaq from './components/ConclusionFaq.vue'
 import DetailBenefits from './components/DetailBenefits.vue'
 import DetailHero from './components/DetailHero.vue'
-import RelatedVehicles from './components/RelatedVehicles.vue'
 import SuccessStories from './components/SuccessStories.vue'
 import UserFeedback from './components/UserFeedback.vue'
 import VehicleHighlights from './components/VehicleHighlights.vue'
@@ -37,11 +36,10 @@ watchEffect(() => {
     <DetailHero :vehicle="vehicle" />
     <VehicleHighlights :vehicle="vehicle" />
     <VehicleSpecs :vehicle="vehicle" />
-    <DetailBenefits />
+    <DetailBenefits :vehicle="vehicle" />
     <SuccessStories />
     <UserFeedback />
     <ConclusionFaq />
-    <RelatedVehicles />
     <QsdBottomCta />
   </QsdLayout>
 </template>

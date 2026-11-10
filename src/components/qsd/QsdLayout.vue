@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import QsdDealerModal from './QsdDealerModal.vue'
 import QsdFloatActions from './QsdFloatActions.vue'
 import QsdFooter from './QsdFooter.vue'
 import QsdHeader from './QsdHeader.vue'
@@ -19,6 +20,7 @@ defineOptions({
       <QsdFooter />
     </div>
     <QsdInquiryModal />
+    <QsdDealerModal />
     <QsdFloatActions />
   </div>
 </template>

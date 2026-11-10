@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed, onBeforeUnmount, ref } from 'vue'
+
 import QsdBreadcrumb from '@/components/qsd/QsdBreadcrumb.vue'
 import { asset } from '@/services/qsd/qsdData'
 import type { VehicleModel } from '@/services/qsd/qsdData'
@@ -8,35 +10,122 @@ defineOptions({
   name: 'DetailHero'
 })
 
-defineProps<{
+const props = defineProps<{
   vehicle: VehicleModel
 }>()
 
 const qsdStore = useQsdStore()
+
+const angleImages: Record<string, string[]> = {
+  'sun-13': ['u461.png', 'u462.png', 'u463.png', 'u464.png', 'u465.png'],
+  'sun-cargo': ['u104.png']
+}
+
+const images = computed(() => angleImages[props.vehicle.id] ?? [props.vehicle.image])
+const activeIndex = ref(0)
+const activeImage = computed(() => images.value[activeIndex.value % images.value.length])
+
+const step = (direction: number) => {
+  const total = images.value.length
+  activeIndex.value = (activeIndex.value + direction + total) % total
+}
+
+const timer = window.setInterval(() => step(1), 4000)
+
+const stop = () => window.clearInterval(timer)
+onBeforeUnmount(stop)
+
+const batteryValue = computed(() => {
+  const raw = props.vehicle.specs.Battery ?? ''
+  return raw.match(/(\d+V\s?\d+Ah)/i)?.[1] ?? raw
+})
+
+const highlights = computed(() => [
+  {
+    label: 'Motor',
+    value: props.vehicle.specs.Motor ?? '72V4000w',
+    icon: 'hl-motor.svg',
+    width: 51,
+    height: 39,
+    overlay: { icon: 'hl-motor-2.svg', width: 26, height: 15, left: 7, top: 6 }
+  },
+  {
+    label: 'Range',
+    value: props.vehicle.range,
+    icon: 'hl-range.svg',
+    width: 44,
+    height: 29
+  },
+  {
+    label: 'Battery',
+    value: batteryValue.value,
+    icon: 'hl-battery.svg',
+    width: 54,
+    height: 54
+  },
+  {
+    label: 'Top Speed',
+    value: props.vehicle.speed,
+    icon: 'hl-speed.svg',
+    width: 50,
+    height: 41,
+    overlay: { icon: 'hl-speed-2.svg', width: 13, height: 12, left: 21, top: 18 }
+  }
+])
+
+const enquire = () => qsdStore.openInquiry()
 </script>
 
 <template>
   <QsdBreadcrumb current="Vehicles" />
-  <section class="detail-hero" :style="{ backgroundImage: `url(${asset('u13.png')})` }">
-    <div class="page-shell detail-layout">
-      <div class="detail-copy-panel">
-        <p class="eyebrow">QSD ELECTRIC AUTOS -- INDIA</p>
-        <h1>{{ vehicle.name }}</h1>
-        <p class="detail-subtitle">{{ vehicle.description }} Compact, comfortable and efficient.</p>
-        <p class="detail-copy">
-          A modern electric passenger tricycle designed for daily urban mobility, offers smooth
-          ride, reliable performance and low running cost.
-        </p>
-        <div class="detail-actions">
-          <button class="quote-pill" type="button" @click="qsdStore.openInquiry">
-            Request a Quote →
-          </button>
-          <button class="ghost-pill ghost-pill--light" type="button">
-            Download Brochure
-            <img class="pill-icon" :src="asset('u24.svg')" alt="" />
-          </button>
-        </div>
+  <section class="detail-hero">
+    <div class="page-shell detail-hero__grid" @mouseenter="stop">
+      <button
+        class="detail-arrow detail-arrow--prev"
+        type="button"
+        aria-label="Previous"
+        @click="step(-1)"
+      />
+      <div class="detail-stage">
+        <img :src="asset(activeImage)" :alt="vehicle.name" />
       </div>
+      <div class="detail-panel">
+        <h2>KEY HIGHLIGHTS</h2>
+        <div class="detail-panel__tiles">
+          <article v-for="item in highlights" :key="item.label" class="detail-tile">
+            <span class="detail-tile__icon">
+              <img
+                :src="asset(item.icon)"
+                :style="{ width: `${item.width}px`, height: `${item.height}px` }"
+                alt=""
+              />
+              <img
+                v-if="item.overlay"
+                class="detail-tile__overlay"
+                :src="asset(item.overlay.icon)"
+                :style="{
+                  width: `${item.overlay.width}px`,
+                  height: `${item.overlay.height}px`,
+                  left: `${item.overlay.left}px`,
+                  top: `${item.overlay.top}px`
+                }"
+                alt=""
+              />
+            </span>
+            <span class="detail-tile__copy">
+              <small>{{ item.label }}</small>
+              <strong>{{ item.value }}</strong>
+            </span>
+          </article>
+        </div>
+        <button class="detail-enquire" type="button" @click="enquire">Enquire Now</button>
+      </div>
+      <button
+        class="detail-arrow detail-arrow--next"
+        type="button"
+        aria-label="Next"
+        @click="step(1)"
+      />
     </div>
   </section>
 </template>

@@ -1,13 +1,8 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { Navigation } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/vue'
+import { computed, onBeforeUnmount, ref } from 'vue'
 
-import { asset, categories, vehicles } from '@/services/qsd/qsdData'
+import { asset } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
-
-import 'swiper/css'
-import 'swiper/css/navigation'
 
 defineOptions({
   name: 'VehicleShowcase'
@@ -15,117 +10,182 @@ defineOptions({
 
 const qsdStore = useQsdStore()
 
-const activeCategory = ref('3W Passenger')
-const swiperModules = [Navigation]
-
-const tabLabels: Record<string, string> = {
-  '3W Passenger': '3W Passenger',
-  '3W Cargo': '3W Cargo',
-  '4W Passenger': '4W Passenger',
-  '4W Cargo': '4W Cargo',
-  '2W Electric': '2W Electric'
+interface HighlightTile {
+  label: string
+  value: string
+  icon: string
+  width: number
+  height: number
+  overlay?: { icon: string; width: number; height: number; left: number; top: number }
 }
 
-const tabIconClasses: Record<string, string> = {
-  '3W Passenger': 'vehicle-tab__icon--3w-passenger',
-  '3W Cargo': 'vehicle-tab__icon--3w-cargo',
-  '4W Passenger': 'vehicle-tab__icon--4w-passenger',
-  '4W Cargo': 'vehicle-tab__icon--4w-cargo',
-  '2W Electric': 'vehicle-tab__icon--2w'
+interface ShowcaseCategory {
+  key: string
+  label: string
+  icon: string
+  vehicleId: string
+  images: string[]
+  tiles: HighlightTile[]
 }
 
-const cardTitles: Record<string, string> = {
-  'sun-13': 'QSD-SUN 1+3',
-  'tesla-d46': 'QSD-MINI SUN(D+4)',
-  'joy-18': 'QSD-JOY 1+3',
-  e1: 'QSD-E1'
-}
+const showcaseCategories: ShowcaseCategory[] = [
+  {
+    key: '3W Passenger',
+    label: '3W Passenger',
+    icon: 'cat-passenger.svg',
+    vehicleId: 'sun-13',
+    images: ['u61.png', 'u62.png', 'u63.png', 'u64.png', 'u65.png'],
+    tiles: [
+      {
+        label: 'Motor',
+        value: '72V4Kw',
+        icon: 'hl-motor.svg',
+        width: 51,
+        height: 39,
+        overlay: { icon: 'hl-motor-2.svg', width: 26, height: 15, left: 7, top: 6 }
+      },
+      { label: 'Range', value: '80-100kms', icon: 'hl-range.svg', width: 44, height: 29 },
+      { label: 'Battery', value: '72V120Ah', icon: 'hl-battery.svg', width: 54, height: 54 },
+      {
+        label: 'Top Speed',
+        value: '50-55km/h',
+        icon: 'hl-speed.svg',
+        width: 50,
+        height: 41,
+        overlay: { icon: 'hl-speed-2.svg', width: 13, height: 12, left: 21, top: 18 }
+      }
+    ]
+  },
+  {
+    key: '3W Cargo',
+    label: '3W Cargo',
+    icon: 'cat-cargo.svg',
+    vehicleId: 'sun-cargo',
+    images: ['u104.png'],
+    tiles: [
+      {
+        label: 'Motor',
+        value: '60V4Kw',
+        icon: 'hl-motor.svg',
+        width: 51,
+        height: 39,
+        overlay: { icon: 'hl-motor-2.svg', width: 26, height: 15, left: 7, top: 6 }
+      },
+      { label: 'Range', value: '100+kms', icon: 'hl-range.svg', width: 44, height: 29 },
+      { label: 'Battery', value: '60V 100Ah', icon: 'hl-battery.svg', width: 54, height: 54 },
+      {
+        label: 'Top Speed',
+        value: '≤50km/h',
+        icon: 'hl-speed.svg',
+        width: 50,
+        height: 41,
+        overlay: { icon: 'hl-speed-2.svg', width: 13, height: 12, left: 21, top: 18 }
+      }
+    ]
+  }
+]
 
-const categoryImages: Record<string, string[]> = {
-  '3W Passenger': [asset('u77.png'), asset('u81.png'), asset('u82.png')],
-  '3W Cargo': [asset('u201.png'), asset('u217.png'), asset('u233.png')],
-  '4W Passenger': [asset('u77.png'), asset('u81.png'), asset('u82.png')],
-  '4W Cargo': [asset('u201.png'), asset('u217.png'), asset('u233.png')],
-  '2W Electric': [asset('qsd-2w.png')]
-}
+const activeKey = ref('3W Passenger')
+const activeImage = ref(0)
 
-const imageMode = computed(() =>
-  activeCategory.value === '3W Cargo' ||
-  activeCategory.value === '4W Cargo' ||
-  activeCategory.value === '2W Electric'
-    ? 'cargo'
-    : 'passenger'
+const activeCategory = computed(
+  () =>
+    showcaseCategories.find((category) => category.key === activeKey.value) ?? showcaseCategories[0]
+)
+const currentImage = computed(
+  () => activeCategory.value.images[activeImage.value % activeCategory.value.images.length]
 )
 
-const carouselVehicles = computed(() => {
-  const matched = vehicles.filter((vehicle) => vehicle.category === activeCategory.value)
-  const base = matched.length
-    ? matched
-    : vehicles.filter((vehicle) => vehicle.category === '3W Passenger')
-  const images = categoryImages[activeCategory.value] ?? base.map((vehicle) => vehicle.image)
-  const repeated = base.length < 2 ? [...base, ...base, ...base] : [...base, ...base]
-  return repeated.map((vehicle, index) => ({
-    ...vehicle,
-    image: images[index % images.length]
-  }))
-})
+const selectCategory = (key: string) => {
+  activeKey.value = key
+  activeImage.value = 0
+}
+
+const stepImage = (direction: number) => {
+  const total = activeCategory.value.images.length
+  activeImage.value = (activeImage.value + direction + total) % total
+}
+
+let autoTimer = window.setInterval(() => stepImage(1), 4000)
+
+const stopAuto = () => {
+  window.clearInterval(autoTimer)
+}
+
+onBeforeUnmount(stopAuto)
 </script>
 
 <template>
-  <section id="vehicles" class="vehicle-section page-shell">
-    <a-tabs v-model:active-key="activeCategory" class="vehicle-tabs">
-      <a-tab-pane v-for="category in categories" :key="category">
-        <template #tab>
-          <span class="vehicle-tab">
-            <span class="vehicle-tab__icon" :class="tabIconClasses[category]" />
-            {{ tabLabels[category] }}
-          </span>
-        </template>
-      </a-tab-pane>
-    </a-tabs>
-    <div class="vehicle-carousel">
-      <Swiper
-        class="vehicle-swiper"
-        :modules="swiperModules"
-        :slides-per-view="3"
-        :space-between="36"
-        :loop="true"
-        :watch-overflow="false"
-        :navigation="{ prevEl: '.vehicle-nav--prev', nextEl: '.vehicle-nav--next' }"
+  <section id="vehicles" class="showcase-section page-shell">
+    <h2 class="showcase-title">High-value electric vehicles, exclusive discounts on your order.</h2>
+
+    <div class="showcase-categories">
+      <button
+        v-for="category in showcaseCategories"
+        :key="category.key"
+        type="button"
+        class="showcase-category"
+        :class="{ 'is-active': activeKey === category.key }"
+        @click="selectCategory(category.key)"
       >
-        <SwiperSlide v-for="(vehicle, index) in carouselVehicles" :key="`${vehicle.id}-${index}`">
-          <article
-            :class="['vehicle-card', `vehicle-card--${vehicle.id}`, `vehicle-card--${imageMode}`]"
-          >
-            <img :src="vehicle.image" :alt="vehicle.name" />
-            <h3>{{ cardTitles[vehicle.id] }}</h3>
-            <p>{{ vehicle.description }}</p>
-            <div class="metrics">
-              <span
-                ><strong>{{ vehicle.speed }}</strong
-                >Top speed</span
-              >
-              <span
-                ><strong>{{ vehicle.range }}</strong
-                >Range</span
-              >
-              <span
-                ><strong>{{ vehicle.seats }}</strong
-                >Seats</span
-              >
-            </div>
-            <RouterLink
-              class="card-link"
-              :to="`/detail/${vehicle.id}`"
-              @click="qsdStore.setActiveVehicle(vehicle.id)"
-            >
-              <span>View details</span><span class="arrow">→</span>
-            </RouterLink>
+        <img :src="asset(category.icon)" :alt="category.label" />
+        <span>{{ category.label }}</span>
+      </button>
+    </div>
+
+    <div class="showcase-main" @mouseenter="stopAuto">
+      <button
+        class="showcase-arrow showcase-arrow--prev"
+        type="button"
+        aria-label="Previous"
+        @click="stepImage(-1)"
+      />
+      <div class="showcase-visual">
+        <img :src="asset(currentImage)" :alt="activeCategory.label" />
+      </div>
+      <div class="showcase-panel">
+        <h3>KEY HIGHLIGHTS</h3>
+        <div class="showcase-tiles">
+          <article v-for="tile in activeCategory.tiles" :key="tile.label" class="showcase-tile">
+            <span class="showcase-tile__icon">
+              <img
+                :src="asset(tile.icon)"
+                :style="{ width: `${tile.width}px`, height: `${tile.height}px` }"
+                alt=""
+              />
+              <img
+                v-if="tile.overlay"
+                class="showcase-tile__overlay"
+                :src="asset(tile.overlay.icon)"
+                :style="{
+                  width: `${tile.overlay.width}px`,
+                  height: `${tile.overlay.height}px`,
+                  left: `${tile.overlay.left}px`,
+                  top: `${tile.overlay.top}px`
+                }"
+                alt=""
+              />
+            </span>
+            <span class="showcase-tile__copy">
+              <small>{{ tile.label }}</small>
+              <strong>{{ tile.value }}</strong>
+            </span>
           </article>
-        </SwiperSlide>
-      </Swiper>
-      <button class="vehicle-nav vehicle-nav--prev" type="button" aria-label="Previous" />
-      <button class="vehicle-nav vehicle-nav--next" type="button" aria-label="Next" />
+        </div>
+        <RouterLink
+          class="showcase-more"
+          :to="`/detail/${activeCategory.vehicleId}`"
+          @click="qsdStore.setActiveVehicle(activeCategory.vehicleId)"
+        >
+          Kown More
+        </RouterLink>
+      </div>
+      <button
+        class="showcase-arrow showcase-arrow--next"
+        type="button"
+        aria-label="Next"
+        @click="stepImage(1)"
+      />
     </div>
   </section>
 </template>
