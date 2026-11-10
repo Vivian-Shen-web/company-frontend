@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { asset } from '@/services/qsd/qsdData'
+
 defineOptions({
   name: 'UserFeedback'
 })
@@ -9,21 +11,21 @@ const feedbacks = [
       'The SUN1+3 is very practical for our daily routes. It’s comfortable, easy to drive and the running cost is low.',
     name: 'Mr. Sharma',
     role: 'Fleet Owner, India',
-    initials: 'MS'
+    avatar: 'avatar-1.png'
   },
   {
     quote:
       'Our passengers like the smooth and quiet ride. The build quality is solid and the battery range meets our needs.',
     name: 'Ms. Rahman',
     role: 'Transport Operator, Bangladesh',
-    initials: 'MR'
+    avatar: 'avatar-2.png'
   },
   {
     quote:
       'Reliable, efficient and easy to maintain. It’s a great choice for community passenger service.',
     name: 'Mr. Karki',
     role: 'Operator, Nepal',
-    initials: 'MK'
+    avatar: 'avatar-3.png'
   }
 ]
 </script>
@@ -41,7 +43,7 @@ const feedbacks = [
           </div>
           <p class="feedback-card__text">{{ feedback.quote }}</p>
           <div class="feedback-card__person">
-            <span class="feedback-card__avatar">{{ feedback.initials }}</span>
+            <img class="feedback-card__avatar" :src="asset(feedback.avatar)" :alt="feedback.name" />
             <div>
               <strong>{{ feedback.name }}</strong>
               <span>{{ feedback.role }}</span>

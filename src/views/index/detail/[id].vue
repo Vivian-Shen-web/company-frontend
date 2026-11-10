@@ -7,6 +7,7 @@ import QsdBottomCta from '@/components/qsd/QsdBottomCta.vue'
 import { vehicles } from '@/services/qsd/qsdData'
 import { useQsdStore } from '@/stores/modules/qsd'
 import ConclusionFaq from './components/ConclusionFaq.vue'
+import DetailBanner from './components/DetailBanner.vue'
 import DetailBenefits from './components/DetailBenefits.vue'
 import DetailHero from './components/DetailHero.vue'
 import SuccessStories from './components/SuccessStories.vue'
@@ -33,6 +34,7 @@ watchEffect(() => {
 
 <template>
   <QsdLayout>
+    <DetailBanner :vehicle="vehicle" />
     <DetailHero :vehicle="vehicle" />
     <VehicleHighlights :vehicle="vehicle" />
     <VehicleSpecs :vehicle="vehicle" />

@@ -33,7 +33,7 @@ const qsdStore = useQsdStore()
         <RouterLink to="/factory">R&amp;D</RouterLink>
         <RouterLink to="/blog">Blogs</RouterLink>
         <RouterLink to="/contact">Contact us</RouterLink>
-        <button type="button" @click="qsdStore.openDealer">Become a Dealer</button>
+        <button type="button" @click="qsdStore.openDealer" class="pl-0">Become a Dealer</button>
       </div>
 
       <div class="footer-products">
