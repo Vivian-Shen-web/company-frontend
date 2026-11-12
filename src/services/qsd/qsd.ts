@@ -7,6 +7,7 @@ const mockResolve = async <T>(data: T): Promise<T> => {
 }
 
 const INQUIRY_URL = 'https://jmtsbgisvehstpvmmpwh.supabase.co/functions/v1/submit-inquiry'
+const NEWSLETTER_URL = 'https://jmtsbgisvehstpvmmpwh.supabase.co/functions/v1/newsletter-subscribe'
 
 export interface InquiryPayload {
   full_name: string
@@ -22,7 +23,7 @@ export interface InquiryPayload {
 
 export const submitQsdInquiry = (payload: InquiryPayload) => axios.post(INQUIRY_URL, payload)
 
-export const subscribeQsdNewsletter = (email: string) => axios.post(INQUIRY_URL, { email })
+export const subscribeQsdNewsletter = (email: string) => axios.post(NEWSLETTER_URL, { email })
 
 export const getQsdVehicles = () => mockResolve(vehicles)
 

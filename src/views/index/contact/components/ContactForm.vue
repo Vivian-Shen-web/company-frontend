@@ -134,6 +134,5 @@ const submitContact = async () => {
     >
       {{ submitting ? 'Sending...' : 'Send Message →' }}
     </button>
-    <p class="privacy">We respect your privacy – no spam, ever.</p>
   </a-form>
 </template>

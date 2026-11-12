@@ -7,7 +7,8 @@ defineOptions({
 })
 
 const qsdStore = useQsdStore()
-const whatsappLink = 'https://wa.me/8615030611128'
+const whatsappLink =
+  'https://api.whatsapp.com/send/?phone=8615030611128&text&type=phone_number&app_absent=0'
 </script>
 
 <template>

@@ -39,6 +39,5 @@ const whatsappLabel = '+86 15030611128'
         <span>{{ whatsappLabel }}</span>
       </p>
     </a>
-    <RouterLink class="contact-dealer-link" to="/dealer">Find a Dealer in India →</RouterLink>
   </aside>
 </template>

@@ -23,16 +23,49 @@ const goDetail = (id: string) => {
   router.push(`/detail/${id}`)
 }
 
-const vehicleMenuCategories = ['3W Passenger', '3W Cargo']
+const vehicleMenuCategories = [
+  '3W Passenger',
+  '3W Cargo',
+  '4W Passenger',
+  '4W Cargo',
+  '2W Electric'
+]
+
+interface VehicleMenuItem {
+  label: string
+  image: string
+  size: 'sun' | 'tesla' | 'joy' | 'master'
+  id: string | null
+}
 
 const activeVehicleMenu = ref('3W Passenger')
 
-const vehicleMenuItems = computed(() => {
-  if (activeVehicleMenu.value === '3W Cargo') {
-    return [{ label: 'QSD-SUN Loader', image: 'sun-cargo.png', size: 'sun', id: 'sun-cargo' }]
-  }
-  return [{ label: 'QSD-SUN 1+3', image: 'u1370.png', size: 'sun', id: 'sun-13' }]
-})
+const vehicleMenuGroups: Record<string, VehicleMenuItem[]> = {
+  '3W Passenger': [
+    { label: 'SUN 1+3', image: 'menu-sun.png', size: 'sun', id: 'sun-13' },
+    { label: 'TESLATESLA', image: 'menu-tesla.png', size: 'tesla', id: null },
+    { label: 'JOY SPORT 1+8', image: 'menu-joy.png', size: 'joy', id: null },
+    { label: 'MASTER', image: 'menu-master.png', size: 'master', id: null },
+    { label: 'SUN 1+3', image: 'menu-sun.png', size: 'sun', id: 'sun-13' },
+    { label: 'TESLATESLA', image: 'menu-tesla.png', size: 'tesla', id: null },
+    { label: 'JOY SPORT 1+8', image: 'menu-joy.png', size: 'joy', id: null },
+    { label: 'MASTER', image: 'menu-master.png', size: 'master', id: null }
+  ],
+  '3W Cargo': [{ label: 'QSD-SUN Loader', image: 'sun-cargo.png', size: 'sun', id: 'sun-cargo' }],
+  '4W Passenger': [
+    { label: 'SUN 1+3', image: 'menu-sun.png', size: 'sun', id: null },
+    { label: 'TESLATESLA', image: 'menu-tesla.png', size: 'tesla', id: null },
+    { label: 'JOY SPORT 1+8', image: 'menu-joy.png', size: 'joy', id: null },
+    { label: 'MASTER', image: 'menu-master.png', size: 'master', id: null }
+  ],
+  '4W Cargo': [
+    { label: 'QSD-SUN Loader', image: 'sun-cargo.png', size: 'sun', id: null },
+    { label: 'MASTER', image: 'menu-master.png', size: 'master', id: null }
+  ],
+  '2W Electric': [{ label: 'QSD 2W', image: 'qsd-2w.png', size: 'joy', id: null }]
+}
+
+const vehicleMenuItems = computed(() => vehicleMenuGroups[activeVehicleMenu.value] ?? [])
 
 const goMenuVehicle = (id: string | null) => {
   if (!id) return
@@ -154,7 +187,8 @@ const toggleBrochureCategory = (name: string) => {
                   type="button"
                   class="vehicle-menu__side-item"
                   :class="{ 'is-active': activeVehicleMenu === category }"
-                  @click="activeVehicleMenu = category"
+                  @mouseenter="activeVehicleMenu = category"
+                  @click.stop="activeVehicleMenu = category"
                 >
                   <span>{{ category }}</span>
                   <img
@@ -170,7 +204,7 @@ const toggleBrochureCategory = (name: string) => {
                   type="button"
                   class="vehicle-menu__item"
                   :class="`vehicle-menu__item--${item.size}`"
-                  @click="goMenuVehicle(item.id)"
+                  @click.stop="goMenuVehicle(item.id)"
                 >
                   <img :src="asset(item.image)" :alt="item.label" />
                   <span>{{ item.label }}</span>
