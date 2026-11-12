@@ -99,19 +99,22 @@ const enquire = () => qsdStore.openInquiry()
 <template>
   <section class="detail-hero">
     <div class="page-shell detail-hero__grid">
-      <button class="detail-arrow detail-arrow--prev" type="button" aria-label="Previous" />
-      <Swiper
-        class="detail-stage"
-        :modules="swiperModules"
-        :loop="images.length > 1"
-        :speed="600"
-        :autoplay="{ delay: 3000, disableOnInteraction: false }"
-        :navigation="{ prevEl: '.detail-arrow--prev', nextEl: '.detail-arrow--next' }"
-      >
-        <SwiperSlide v-for="image in images" :key="image">
-          <img :src="asset(image)" :alt="vehicle.name" />
-        </SwiperSlide>
-      </Swiper>
+      <div class="detail-media">
+        <button class="detail-arrow detail-arrow--prev" type="button" aria-label="Previous" />
+        <Swiper
+          class="detail-stage"
+          :modules="swiperModules"
+          :loop="images.length > 1"
+          :speed="600"
+          :autoplay="{ delay: 3000, disableOnInteraction: false }"
+          :navigation="{ prevEl: '.detail-arrow--prev', nextEl: '.detail-arrow--next' }"
+        >
+          <SwiperSlide v-for="image in images" :key="image">
+            <img :src="asset(image)" :alt="vehicle.name" />
+          </SwiperSlide>
+        </Swiper>
+        <button class="detail-arrow detail-arrow--next" type="button" aria-label="Next" />
+      </div>
       <div class="detail-panel">
         <h2>KEY HIGHLIGHTS</h2>
         <div class="detail-panel__tiles">
@@ -138,7 +141,6 @@ const enquire = () => qsdStore.openInquiry()
         </div>
         <button class="detail-enquire" type="button" @click="enquire">Enquire Now</button>
       </div>
-      <button class="detail-arrow detail-arrow--next" type="button" aria-label="Next" />
     </div>
   </section>
 </template>

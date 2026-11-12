@@ -205,6 +205,7 @@
   font-weight: 400;
   line-height: 16px;
   text-align: center;
+  cursor: pointer;
 }
 
 .vehicle-menu__item img {
@@ -1276,45 +1277,40 @@
   padding: 10px 0;
 }
 
-.qsd-site .detail-arrow {
+.detail-media {
   position: relative;
   display: flex;
-  width: 48px;
-  height: 48px;
-  flex: none;
+  flex: 1;
   align-items: center;
   justify-content: center;
-  border: 1px solid #bfe9f2;
-  border-radius: 8px;
-  background: #fff;
-  cursor: pointer;
+  min-width: 0;
 }
 
-.qsd-site .detail-arrow::before {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  background: #22c7dd;
-  content: '';
-}
-
-.qsd-site .detail-arrow::after {
+.qsd-site .detail-arrow {
   position: absolute;
   top: 50%;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  border-top: 2.5px solid #fff;
-  border-right: 2.5px solid #fff;
-  content: '';
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border: 0;
+  border-radius: 50%;
+  background: url('../assets/icons/u297.svg') center / 40px 40px no-repeat;
+  cursor: pointer;
+  transform: translateY(-50%);
 }
 
-.qsd-site .detail-arrow--prev::after {
-  transform: translate(-32%, -50%) rotate(-135deg);
+.qsd-site .detail-arrow--prev {
+  left: 0;
 }
 
-.qsd-site .detail-arrow--next::after {
-  transform: translate(-68%, -50%) rotate(45deg);
+.qsd-site .detail-arrow--next {
+  right: 0;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.qsd-site .detail-arrow:hover {
+  background-image: url('../assets/icons/u297_mouseOver.svg');
 }
 
 .qsd-site .detail-arrow.swiper-button-disabled {
@@ -1868,8 +1864,8 @@
 }
 
 .contact-info {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
   gap: 27px;
   border-radius: 0;
   background: transparent;
@@ -1878,16 +1874,10 @@
 }
 
 .contact-info-card {
-  flex: none;
   border-radius: 4px;
   background: #03182d;
   padding: 48px 54px;
   color: #fff;
-}
-
-.contact-info-card:last-child {
-  flex: 1;
-  min-height: 0;
 }
 
 .contact-info-card__icon {
