@@ -18,11 +18,11 @@ const qsdStore = useQsdStore()
 const heroSlides = [
   {
     image: asset('u5.png'),
-    overlay: asset('u6.png'),
+    overlay: asset('u6-hero-overlay.webp'),
     className: 'hero-slide--visual'
   },
   {
-    image: asset('u8.png'),
+    image: asset('u8-hero-slide.webp'),
     eyebrow: 'QSD ELECTRIC AUTOS -- INDIA',
     title: '',
     accent: 'BUILT FOR TOMORROW.',
