@@ -15,14 +15,28 @@ defineOptions({
 
 const qsdStore = useQsdStore()
 
-const heroSlides = [
+type HeroSlide = {
+  image: string
+  motion?: string
+  overlayMotion?: string
+  overlayPoster?: string
+  eyebrow?: string
+  title?: string
+  accent?: string
+  copy?: string
+  className: string
+}
+
+const heroSlides: HeroSlide[] = [
   {
     image: asset('u5.png'),
-    overlay: asset('u6-hero-overlay.webp'),
+    overlayMotion: asset('u6-hero-overlay.webp'),
+    overlayPoster: asset('u6-hero-overlay-poster.jpg'),
     className: 'hero-slide--visual'
   },
   {
-    image: asset('u8-hero-slide.webp'),
+    image: asset('u8-hero-slide-poster.jpg'),
+    motion: asset('u8-hero-slide.webp'),
     eyebrow: 'QSD ELECTRIC AUTOS -- INDIA',
     title: '',
     accent: 'BUILT FOR TOMORROW.',
@@ -38,6 +52,23 @@ const heroSlides = [
     className: 'hero-slide--copy'
   }
 ]
+
+// 动效降级：移动端、省流量/慢网、系统开启“减弱动态效果”时只给静帧，避免首屏下载 11MB 动图
+const allowMotion = (() => {
+  if (typeof window === 'undefined') return false
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
+  if (window.matchMedia('(max-width: 767px)').matches) return false
+  const connection = (
+    navigator as Navigator & {
+      connection?: { saveData?: boolean; effectiveType?: string }
+    }
+  ).connection
+  if (connection?.saveData) return false
+  if (connection?.effectiveType && ['slow-2g', '2g', '3g'].includes(connection.effectiveType)) {
+    return false
+  }
+  return true
+})()
 
 const swiperModules = [Autoplay, EffectFade, Navigation]
 
@@ -58,8 +89,15 @@ const exploreVehicles = () => {
       :navigation="true"
     >
       <SwiperSlide v-for="slide in heroSlides" :key="slide.image" :class="slide.className">
-        <img class="hero-bg" :src="slide.image" alt="" />
-        <img v-if="slide.overlay" class="hero-bg hero-bg--overlay" :src="slide.overlay" alt="" />
+        <picture v-if="slide.motion">
+          <source v-if="allowMotion" :srcset="slide.motion" type="image/webp" />
+          <img class="hero-bg" :src="slide.image" alt="" />
+        </picture>
+        <img v-else class="hero-bg" :src="slide.image" alt="" />
+        <picture v-if="slide.overlayMotion">
+          <source v-if="allowMotion" :srcset="slide.overlayMotion" type="image/webp" />
+          <img class="hero-bg hero-bg--overlay" :src="slide.overlayPoster" alt="" />
+        </picture>
         <div v-if="slide.eyebrow" class="hero-content">
           <p class="eyebrow">{{ slide.eyebrow }}</p>
           <h1 v-if="slide.title">{{ slide.title }}</h1>

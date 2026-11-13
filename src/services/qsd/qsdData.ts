@@ -29,6 +29,12 @@ const qsdWebpAssets = import.meta.glob('../../assets/img/*.webp', {
   import: 'default'
 }) as Record<string, string>
 
+const qsdJpgAssets = import.meta.glob('../../assets/img/*.jpg', {
+  eager: true,
+  query: '?url',
+  import: 'default'
+}) as Record<string, string>
+
 const qsdSvgAssets = import.meta.glob('../../assets/icons/*.svg', {
   eager: true,
   query: '?url',
@@ -38,6 +44,7 @@ const qsdSvgAssets = import.meta.glob('../../assets/icons/*.svg', {
 export const asset = (name: string) => {
   if (name.endsWith('.png')) return qsdPngAssets[`../../assets/img/${name}`] || ''
   if (name.endsWith('.webp')) return qsdWebpAssets[`../../assets/img/${name}`] || ''
+  if (name.endsWith('.jpg')) return qsdJpgAssets[`../../assets/img/${name}`] || ''
   if (name.endsWith('.svg')) return qsdSvgAssets[`../../assets/icons/${name}`] || ''
   return ''
 }
